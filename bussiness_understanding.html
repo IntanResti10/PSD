@@ -1,0 +1,737 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Crawling Data &#8212; Proyek Sains Data - Intan Resti Haslindawati</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'bussiness_understanding';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Proyek Sains Data - Portfolio Materi" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/intan.jpeg" class="logo__image only-light" alt="Proyek Sains Data - Intan Resti Haslindawati - Home"/>
+    <img src="_static/intan.jpeg" class="logo__image only-dark pst-js-only" alt="Proyek Sains Data - Intan Resti Haslindawati - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Proyek Sains Data - Portfolio Materi
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Crawling Data</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fbussiness_understanding.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/bussiness_understanding.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Crawling Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bussiness-understanding">Bussiness Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengamati-kualitas-udara">Mengamati Kualitas Udara</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsur-unsur-polutan-udara">Unsur-Unsur Polutan Udara</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">Data Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengumpulkan-data-dari-copernicus-data-space-ecosystem-cdse">Mengumpulkan Data dari Copernicus Data Space Ecosystem (CDSE)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pengambilan-data">Pengambilan Data:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data-eda">Eksplorasi Data (EDA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-pengambilan-data">Deskripsi Pengambilan Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-data-peta">Visualisasi Data Peta</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-peta-folium">1. Visualisasi Peta (folium):</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-grafik-matplotlib">2. Visualisasi Grafik (matplotlib):</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-peta-wilayah-kecamatan-kadur-copernicus">3. Visualisasi Peta wilayah kecamatan kadur(Copernicus):</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">Missing Value</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#noises">Noises</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#outliers">Outliers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="crawling-data">
+<h1>Crawling Data<a class="headerlink" href="#crawling-data" title="Link to this heading">#</a></h1>
+<section id="bussiness-understanding">
+<h2>Bussiness Understanding<a class="headerlink" href="#bussiness-understanding" title="Link to this heading">#</a></h2>
+<section id="mengamati-kualitas-udara">
+<h3>Mengamati Kualitas Udara<a class="headerlink" href="#mengamati-kualitas-udara" title="Link to this heading">#</a></h3>
+<p>Kualitas udara merupakan salah satu elemen penting dalam menjaga keberlanjutan lingkungan hidup dan kesehatan masyarakat. Seiring meningkatnya aktivitas industri, transportasi, dan perubahan tata guna lahan, emisi zat pencemar ke atmosfer mengalami peningkatan. Oleh karena itu, pengamatan kualitas udara secara berkala menjadi krusial untuk mendeteksi risiko pemaparan zat berbahaya sejak dini.</p>
+<p>Indeks Kualitas Udara (Air Quality Index / AQI) adalah indikator terstandarisasi yang digunakan untuk mengomunikasikan tingkat kebersihan atau pencemaran udara di suatu area kepada publik. Nilai AQI mengodekan konsentrasi berbagai polutan atmosfer menjadi skala numerik yang intuitif, umumnya dilengkapi dengan kategori tingkat risiko kesehatan (seperti Baik, Sedang, Tidak Sehat, Sangat Tidak Sehat, hingga Berbahaya).</p>
+</section>
+<section id="unsur-unsur-polutan-udara">
+<h3>Unsur-Unsur Polutan Udara<a class="headerlink" href="#unsur-unsur-polutan-udara" title="Link to this heading">#</a></h3>
+<p>Kualitas udara ditentukan oleh keberadaan senyawa kimia gas dan partikulat tersuspensi. Dalam studi ini, pengamatan difokuskan pada beberapa polutan utama hasil ekstraksi data satelit Copernicus:</p>
+<ul class="simple">
+<li><p><strong>Nitrogen Dioksida (NO2)</strong>: Gas pembentukan utama emisi pembakaran bahan bakar fosil dari kendaraan bermotor dan pembangkit listrik. Konsentrasi NO2 yang tinggi berpotensi memicu penyakit saluran pernapasan, bronkitis, serta berperan dalam pembentukan hujan asam dan ozon troposferik.</p></li>
+<li><p><strong>Karbon Monoksida (CO)</strong>: Gas yang dihasilkan dari proses pembakaran tidak sempurna bahan bakar karbon (misalnya pada mesin kendaraan dan kebakaran vegetasi). CO berikatan kuat dengan hemoglobin darah, mengurangi pengangkutan oksigen ke jaringan tubuh.</p></li>
+<li><p><strong>Sulfur Dioksida (SO2)</strong>: Gas berbau tajam yang utamanya dihasilkan dari pembakaran batu bara, pengolahan bijih logam, atau aktivitas vulkanik. SO2 dapat menyebabkan penyempitan saluran napas dan kerusakan ekosistem tanah/air.</p></li>
+<li><p><strong>Metana (CH4)</strong>: Gas rumah kaca kuat yang dihasilkan dari proses penguraian bahan organik secara anaerobik (seperti pada sektor pertanian, peternakan, sawah tergenang, dan tempat pemrosesan akhir sampah) serta kebocoran distribusi gas alam. CH4 memiliki potensi pemanasan global (Global Warming Potential) jauh lebih tinggi dibanding CO2 dan berperan penting dalam pembentukan ozon di tingkat permukaan (ground-level ozone).</p></li>
+</ul>
+</section>
+</section>
+<section id="data-understanding">
+<h2>Data Understanding<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h2>
+<section id="mengumpulkan-data-dari-copernicus-data-space-ecosystem-cdse">
+<h3>Mengumpulkan Data dari Copernicus Data Space Ecosystem (CDSE)<a class="headerlink" href="#mengumpulkan-data-dari-copernicus-data-space-ecosystem-cdse" title="Link to this heading">#</a></h3>
+<p>Data kualitas udara dikumpulkan dari platform Copernicus Data Space Ecosystem (CDSE) dengan memanfaatkan sensor TROPOMI yang terpasang pada satelit Sentinel-5P. Satelit ini memiliki kapabilitas penginderaan jauh resolusi tinggi untuk memantau gas trace dan konsentrasi polutan atmosfer secara global setiap hari.</p>
+<section id="pengambilan-data">
+<h4>Pengambilan Data:<a class="headerlink" href="#pengambilan-data" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Lokasi Pengamatan</strong>: Kecamatan Kadur, Kabupaten Pamekasan, Jawa Timur.</p></li>
+<li><p><strong>Titik Koordinat &amp; Luas</strong>: Latitude <span class="math notranslate nohighlight">\(-7.0365^\circ\)</span>, Longitude <span class="math notranslate nohighlight">\(113.6175^\circ\)</span> (Luas area polygon <span class="math notranslate nohighlight">\(\approx 55.28\text{ km}^2\)</span>).</p></li>
+<li><p><strong>Rentang Waktu</strong>: 24 Agustus 2025 – 24 Agustus 2026.</p></li>
+<li><p><strong>Sumber Data</strong>: Satelit Sentinel-5P (Sensor TROPOMI Level-2/Level-3) dari portal Copernicus Data Space Ecosystem.</p></li>
+<li><p><strong>Parameter Pencemar</strong>: Gas Nitrogen Dioksida (NO2) Troposferik dalam satuan mol/m2.</p></li>
+<li><p><strong>Format Output</strong>: File .csv yang diekstraksi via fitur Statistical Info / Chart Copernicus Browser.</p></li>
+</ul>
+</section>
+</section>
+<section id="eksplorasi-data-eda">
+<h3>Eksplorasi Data (EDA)<a class="headerlink" href="#eksplorasi-data-eda" title="Link to this heading">#</a></h3>
+<section id="deskripsi-pengambilan-data">
+<h4>Deskripsi Pengambilan Data<a class="headerlink" href="#deskripsi-pengambilan-data" title="Link to this heading">#</a></h4>
+<p>Pengambilan data kualitas udara ini dilakukan untuk mengamati fluktuasi konsentrasi polutan udara di wilayah Kecamatan Kadur, Kabupaten Pamekasan, Provinsi Jawa Timur. Penentuan lokasi ini difokuskan pada area pemukiman dan agraris dengan titik koordinat pusat berada pada Latitude <span class="math notranslate nohighlight">\(-7.0365^\circ\)</span> dan Longitude <span class="math notranslate nohighlight">\(113.6175^\circ\)</span>, serta mencakup batas wilayah dalam bentuk polygon dengan total luas area pengamatan sebesar <span class="math notranslate nohighlight">\(\approx 55.28\text{ km}^2\)</span>.</p>
+<p>Pengamatan dilakukan secara time-series harian dalam rentang waktu 24 Agustus 2025 sampai dengan 24 Agustus 2026 (1 tahun penuh). Periode satu tahun ini dipilih secara khusus untuk menangkap pola perubahan kualitas udara antarmusim, baik saat musim kemarau maupun musim hujan, serta mengidentifikasi faktor lingkungan dan meteorologis yang memengaruhi tingkat polusi udara di wilayah Kecamatan Kadur.</p>
+<p>Data diperoleh dari Copernicus Data Space Ecosystem, yaitu platform penyedia data observasi bumi milik European Space Agency (ESA), menggunakan instrumen sensor TROPOMI (TROPOspheric Monitoring Instrument) yang terpasang pada satelit Sentinel-5P. Parameter utama yang diekstraksi adalah Tropospheric NO2 Column Density (konsentrasi gas Nitrogen Dioksida pada lapisan troposfer) yang diukur dalam satuan <span class="math notranslate nohighlight">\(\text{mol/m}^2\)</span>.</p>
+</section>
+<section id="visualisasi-data-peta">
+<h4>Visualisasi Data Peta<a class="headerlink" href="#visualisasi-data-peta" title="Link to this heading">#</a></h4>
+<p>Visualisasi peta interaktif digunakan untuk memastikan bahwa cakupan wilayah pengamatan sudah sesuai secara geografis di wilayah Kecamatan Kadur, Pamekasan.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">folium</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">files</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;upload file CSV)</span>
+<span class="n">uploaded</span> <span class="o">=</span> <span class="n">files</span><span class="o">.</span><span class="n">upload</span><span class="p">()</span>
+
+<span class="n">file_name</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">uploaded</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+        <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">uploaded</span><span class="p">[</span><span class="n">file_name</span><span class="p">]),</span> <span class="n">sep</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;python&quot;</span>
+    <span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+    
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+        <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">uploaded</span><span class="p">[</span><span class="n">file_name</span><span class="p">]),</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;;&quot;</span><span class="p">,</span> <span class="n">on_bad_lines</span><span class="o">=</span><span class="s2">&quot;skip&quot;</span>
+    <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Berhasil mengunggah: </span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">5 Baris Pertama Data:&quot;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;menampilkan peta wilayah kecamatan kadur&quot;</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span>
+    <span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">7.0365</span><span class="p">,</span> <span class="mf">113.6175</span><span class="p">],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">tiles</span><span class="o">=</span><span class="s2">&quot;OpenStreetMap&quot;</span>
+<span class="p">)</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">Marker</span><span class="p">(</span>
+    <span class="p">[</span><span class="o">-</span><span class="mf">7.0365</span><span class="p">,</span> <span class="mf">113.6175</span><span class="p">],</span>
+    <span class="n">popup</span><span class="o">=</span><span class="s2">&quot;Kecamatan Kadur, Pamekasan&quot;</span><span class="p">,</span>
+    <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;Lokasi Pengamatan NO2&quot;</span><span class="p">,</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;grafik Tren konsentrasi NO2&quot;</span><span class="p">)</span>
+<span class="n">col_date</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="s2">&quot;date&quot;</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">or</span> <span class="s2">&quot;time&quot;</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">()][</span>
+    <span class="mi">0</span>
+<span class="p">]</span>
+<span class="n">col_val</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">c</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+    <span class="k">if</span> <span class="s2">&quot;mean&quot;</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">or</span> <span class="s2">&quot;val&quot;</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">or</span> <span class="s2">&quot;no2&quot;</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="p">]</span>
+<span class="n">col_val</span> <span class="o">=</span> <span class="n">col_val</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">col_val</span> <span class="k">else</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">df</span><span class="p">[</span><span class="n">col_date</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">col_date</span><span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col_date</span><span class="p">],</span>
+    <span class="n">df</span><span class="p">[</span><span class="n">col_val</span><span class="p">],</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;crimson&quot;</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Konsentrasi NO2&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
+    <span class="s2">&quot;Tren Konsentrasi NO2 di Kecamatan Kadur, Pamekasan (24 Agst 2025 - 24 Agst&quot;</span>
+    <span class="s2">&quot; 2026)&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Tanggal Pengamatan&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Konsentrasi NO2 (mol/m²)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<section id="visualisasi-peta-folium">
+<h5>1. Visualisasi Peta (folium):<a class="headerlink" href="#visualisasi-peta-folium" title="Link to this heading">#</a></h5>
+<p><img alt="peta1" src="images/peta1.png" /></p>
+</section>
+<section id="visualisasi-grafik-matplotlib">
+<h5>2. Visualisasi Grafik (matplotlib):<a class="headerlink" href="#visualisasi-grafik-matplotlib" title="Link to this heading">#</a></h5>
+<p><img alt="grafikkonsentrasiNO2" src="images/grafikkonsentrasiNO2.png" /></p>
+</section>
+<section id="visualisasi-peta-wilayah-kecamatan-kadur-copernicus">
+<h5>3. Visualisasi Peta wilayah kecamatan kadur(Copernicus):<a class="headerlink" href="#visualisasi-peta-wilayah-kecamatan-kadur-copernicus" title="Link to this heading">#</a></h5>
+<p><img alt="peta2" src="images/peta2.png" /></p>
+</section>
+<section id="missing-value">
+<h5>Missing Value<a class="headerlink" href="#missing-value" title="Link to this heading">#</a></h5>
+<p>Terdeteksi beberapa baris data bernilai kosong/0 yang disebabkan oleh gangguan tutupan awan (cloud cover) saat satelit Sentinel-5P melakukan pemindaian harian.</p>
+</section>
+<section id="noises">
+<h5>Noises<a class="headerlink" href="#noises" title="Link to this heading">#</a></h5>
+<p>Terdapat noise skala pengukuran bawaan satelit karena nilai konsentrasi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> berada pada orde yang sangat kecil (<span class="math notranslate nohighlight">\(10^{-5}\text{ mol/m}^2\)</span>), sehingga berpotensi menimbulkan rounding error pada pemrosesan awal.</p>
+</section>
+<section id="outliers">
+<h5>Outliers<a class="headerlink" href="#outliers" title="Link to this heading">#</a></h5>
+<p>Terdeteksi beberapa titik pencilan (outliers) berupa lonjakan nilai konsentrasi <span class="math notranslate nohighlight">\(\text{NO}_2\)</span> pada bulan September–Oktober 2025. Lonjakan ini dipengaruhi faktor meteorologis (musim kemarau panjang) dan bukan merupakan kesalahan input data.</p>
+</section>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Proyek Sains Data - Portfolio Materi</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bussiness-understanding">Bussiness Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengamati-kualitas-udara">Mengamati Kualitas Udara</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsur-unsur-polutan-udara">Unsur-Unsur Polutan Udara</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">Data Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mengumpulkan-data-dari-copernicus-data-space-ecosystem-cdse">Mengumpulkan Data dari Copernicus Data Space Ecosystem (CDSE)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pengambilan-data">Pengambilan Data:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data-eda">Eksplorasi Data (EDA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-pengambilan-data">Deskripsi Pengambilan Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-data-peta">Visualisasi Data Peta</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-peta-folium">1. Visualisasi Peta (folium):</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-grafik-matplotlib">2. Visualisasi Grafik (matplotlib):</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-peta-wilayah-kecamatan-kadur-copernicus">3. Visualisasi Peta wilayah kecamatan kadur(Copernicus):</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-value">Missing Value</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#noises">Noises</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#outliers">Outliers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Intan Resti Haslindawati (240411100147)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
