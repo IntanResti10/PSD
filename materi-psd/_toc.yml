@@ -5,3 +5,4 @@ format: jb-book
 root: intro
 chapters:
 - file: bussiness_understanding
+- file: tugas_pertemuan2

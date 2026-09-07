@@ -1,0 +1,1573 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pemindahan Data ke Cloud (Aiven) dan Analisis Statistik Menggunakan KNIME &#8212; Proyek Sains Data - Intan Resti Haslindawati</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas_pertemuan2';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Crawling Data" href="bussiness_understanding.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/intan.jpeg" class="logo__image only-light" alt="Proyek Sains Data - Intan Resti Haslindawati - Home"/>
+    <img src="_static/intan.jpeg" class="logo__image only-dark pst-js-only" alt="Proyek Sains Data - Intan Resti Haslindawati - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Proyek Sains Data - Portfolio Materi
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bussiness_understanding.html">Crawling Data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Pemindahan Data ke Cloud (Aiven) dan Analisis Statistik Menggunakan KNIME</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftugas_pertemuan2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tugas_pertemuan2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pemindahan Data ke Cloud (Aiven) dan Analisis Statistik Menggunakan KNIME</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pemindahan Data ke Cloud (Aiven) dan Analisis Statistik Menggunakan KNIME</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">1. Tujuan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2. Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memindahkan-data-ke-aiven-postgresql">3. Memindahkan Data ke Aiven PostgreSQL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghubungkan-aiven-postgresql-dengan-knime">4. Menghubungkan Aiven PostgreSQL dengan KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#postgresql-connector">4.1 PostgreSQL Connector</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#db-table-selector">4.2 DB Table Selector</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#db-reader">4.3 DB Reader</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data-menggunakan-table-view">5. Menampilkan Data Menggunakan Table View</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-statistik-menggunakan-knime">6. Analisis Statistik Menggunakan KNIME</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-statistics-dari-knime">7. Hasil Statistics dari KNIME</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-setiap-properti-statistik">8. Penjelasan Setiap Properti Statistik</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#column">8.1 Column</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-missing">8.2 No. Missing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-valid">8.3 No. Valid</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min">8.4 Min</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#max">8.5 Max</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q1">8.6 Q1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean">8.7 Mean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q3">8.8 Q3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median">8.9 Median</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#std-dev">8.10 Std. Dev.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance">8.11 Variance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skewness">8.12 Skewness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kurtosis">8.13 Kurtosis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mode">8.14 Mode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-khusus-kolom-sample-count">9. Analisis Khusus Kolom <code class="docutils literal notranslate"><span class="pre">sample_count</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-khusus-no-data-count">10. Analisis Khusus <code class="docutils literal notranslate"><span class="pre">no_data_count</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-khusus-kolom-stdev">11. Analisis Khusus Kolom <code class="docutils literal notranslate"><span class="pre">stdev</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-berdasarkan-data-asli">12. Contoh Perhitungan Berdasarkan Data Asli</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-dari-lima-data-asli">12.1 Mean dari Lima Data Asli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median-dari-lima-data-asli">12.2 Median dari Lima Data Asli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-dari-lima-data-asli">12.3 Min dari Lima Data Asli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#max-dari-lima-data-asli">12.4 Max dari Lima Data Asli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#range-dari-lima-data-asli">12.5 Range dari Lima Data Asli</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">13. Kesimpulan</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pemindahan-data-ke-cloud-aiven-dan-analisis-statistik-menggunakan-knime">
+<h1>Pemindahan Data ke Cloud (Aiven) dan Analisis Statistik Menggunakan KNIME<a class="headerlink" href="#pemindahan-data-ke-cloud-aiven-dan-analisis-statistik-menggunakan-knime" title="Link to this heading">#</a></h1>
+<section id="tujuan">
+<h2>1. Tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h2>
+<p>Tugas ini bertujuan untuk memindahkan data hasil tugas sebelumnya dari file CSV ke database PostgreSQL berbasis cloud menggunakan Aiven, kemudian mengambil kembali data tersebut menggunakan KNIME untuk dilakukan analisis statistik.</p>
+<p>Tahapan yang dilakukan meliputi:</p>
+<ol class="arabic simple">
+<li><p>Menyiapkan dataset hasil tugas sebelumnya.</p></li>
+<li><p>Memindahkan data ke Aiven PostgreSQL.</p></li>
+<li><p>Menghubungkan Aiven PostgreSQL dengan KNIME.</p></li>
+<li><p>Mengambil data dari database menggunakan KNIME.</p></li>
+<li><p>Menampilkan data menggunakan Table View.</p></li>
+<li><p>Melakukan analisis statistik menggunakan Statistics.</p></li>
+<li><p>Menjelaskan properti statistik yang dihasilkan KNIME.</p></li>
+<li><p>Memberikan contoh perhitungan berdasarkan data asli.</p></li>
+</ol>
+</section>
+<section id="dataset">
+<h2>2. Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
+<p>Dataset yang digunakan adalah dataset <strong>kualitas udara Kadur</strong> dengan tabel PostgreSQL:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kualitas_udara_kadur
+</pre></div>
+</div>
+<p>Dataset terdiri dari beberapa kolom statistik harian, yaitu:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>No</p></th>
+<th class="head"><p>Kolom</p></th>
+<th class="head"><p>Tipe Data</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tanggal</span></code></p></td>
+<td><p>Date/Time</p></td>
+<td><p>Tanggal pengamatan</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nilai_min</span></code></p></td>
+<td><p>Float</p></td>
+<td><p>Nilai minimum pengamatan</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>3</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nilai_max</span></code></p></td>
+<td><p>Float</p></td>
+<td><p>Nilai maksimum pengamatan</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>4</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code></p></td>
+<td><p>Float</p></td>
+<td><p>Nilai rata-rata pengamatan</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>5</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">stdev</span></code></p></td>
+<td><p>Float</p></td>
+<td><p>Standar deviasi pengamatan</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>6</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sample_count</span></code></p></td>
+<td><p>Integer</p></td>
+<td><p>Jumlah sampel</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>7</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">no_data_count</span></code></p></td>
+<td><p>Integer</p></td>
+<td><p>Jumlah data yang tidak tersedia</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>8</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">median</span></code></p></td>
+<td><p>Float</p></td>
+<td><p>Nilai median</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>9</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">p10</span></code></p></td>
+<td><p>Float</p></td>
+<td><p>Persentil ke-10</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>10</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">p90</span></code></p></td>
+<td><p>Float</p></td>
+<td><p>Persentil ke-90</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Data tersebut merupakan <strong>data statistik harian</strong>, sehingga nilai seperti <code class="docutils literal notranslate"><span class="pre">nilai_min</span></code>, <code class="docutils literal notranslate"><span class="pre">nilai_max</span></code>, <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code>, <code class="docutils literal notranslate"><span class="pre">median</span></code>, <code class="docutils literal notranslate"><span class="pre">p10</span></code>, dan <code class="docutils literal notranslate"><span class="pre">p90</span></code> sudah merupakan hasil pengolahan dari pengamatan pada masing-masing tanggal.</p>
+</section>
+<section id="memindahkan-data-ke-aiven-postgresql">
+<h2>3. Memindahkan Data ke Aiven PostgreSQL<a class="headerlink" href="#memindahkan-data-ke-aiven-postgresql" title="Link to this heading">#</a></h2>
+<p>Data hasil tugas sebelumnya dimasukkan ke database Aiven PostgreSQL menggunakan perintah SQL <code class="docutils literal notranslate"><span class="pre">INSERT</span></code>.</p>
+<p>Struktur perintah yang digunakan adalah:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">kualitas_udara_kadur</span>
+<span class="p">(</span><span class="n">tanggal</span><span class="p">,</span><span class="w"> </span><span class="n">nilai_min</span><span class="p">,</span><span class="w"> </span><span class="n">nilai_max</span><span class="p">,</span><span class="w"> </span><span class="n">nilai_mean</span><span class="p">,</span><span class="w"> </span><span class="n">stdev</span><span class="p">,</span>
+<span class="w"> </span><span class="n">sample_count</span><span class="p">,</span><span class="w"> </span><span class="n">no_data_count</span><span class="p">,</span><span class="w"> </span><span class="n">median</span><span class="p">,</span><span class="w"> </span><span class="n">p10</span><span class="p">,</span><span class="w"> </span><span class="n">p90</span><span class="p">)</span>
+<span class="k">VALUES</span>
+<span class="p">(...);</span>
+</pre></div>
+</div>
+<p>Contoh salah satu baris data asli:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>tanggal       = 2026-08-24
+nilai_min     = 9.562372724758461E-6
+nilai_max     = 3.554132490535267E-5
+nilai_mean    = 2.5862272195809055E-5
+stdev         = 1.0145439252970663E-5
+sample_count  = 8
+no_data_count = 0
+median        = 2.8113074222346768E-5
+p10           = 9.562372724758461E-6
+p90           = 3.554132490535267E-5
+</pre></div>
+</div>
+<p>Setelah data berhasil dimasukkan ke Aiven PostgreSQL, database dapat diakses oleh KNIME.</p>
+</section>
+<section id="menghubungkan-aiven-postgresql-dengan-knime">
+<h2>4. Menghubungkan Aiven PostgreSQL dengan KNIME<a class="headerlink" href="#menghubungkan-aiven-postgresql-dengan-knime" title="Link to this heading">#</a></h2>
+<p>Workflow yang digunakan untuk mengambil data dari Aiven PostgreSQL adalah:
+<img alt="tugas2.2" src="_images/tugas2.2.png" /></p>
+<section id="postgresql-connector">
+<h3>4.1 PostgreSQL Connector<a class="headerlink" href="#postgresql-connector" title="Link to this heading">#</a></h3>
+<p>PostgreSQL Connector digunakan untuk membuat koneksi antara KNIME dan database PostgreSQL yang berada pada Aiven.</p>
+<p>Parameter koneksi yang diperlukan meliputi:</p>
+<ul class="simple">
+<li><p>Host</p></li>
+<li><p>Port</p></li>
+<li><p>Database</p></li>
+<li><p>Username</p></li>
+<li><p>Password</p></li>
+<li><p>SSL</p></li>
+</ul>
+<p>Setelah seluruh parameter diisi sesuai informasi koneksi Aiven, koneksi dijalankan sehingga KNIME dapat berkomunikasi dengan database.</p>
+</section>
+<section id="db-table-selector">
+<h3>4.2 DB Table Selector<a class="headerlink" href="#db-table-selector" title="Link to this heading">#</a></h3>
+<p>DB Table Selector digunakan untuk memilih tabel yang akan digunakan.</p>
+<p>Tabel yang dipilih adalah:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>kualitas_udara_kadur
+</pre></div>
+</div>
+<p>Dengan node ini, KNIME menentukan tabel yang akan dibaca dari database.</p>
+</section>
+<section id="db-reader">
+<h3>4.3 DB Reader<a class="headerlink" href="#db-reader" title="Link to this heading">#</a></h3>
+<p>DB Reader digunakan untuk mengambil isi tabel dari database dan mengubahnya menjadi data table yang dapat digunakan dalam workflow KNIME.</p>
+<p>Setelah node berhasil dijalankan, data dapat diteruskan ke Table View dan Statistics.</p>
+</section>
+</section>
+<section id="menampilkan-data-menggunakan-table-view">
+<h2>5. Menampilkan Data Menggunakan Table View<a class="headerlink" href="#menampilkan-data-menggunakan-table-view" title="Link to this heading">#</a></h2>
+<p>Table View digunakan untuk melihat isi dataset yang telah berhasil diambil dari Aiven PostgreSQL.</p>
+<p>Konfigurasi yang digunakan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Includes : seluruh kolom
+Excludes : tidak ada
+</pre></div>
+</div>
+<p>Dengan demikian, seluruh kolom dataset ditampilkan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>tanggal
+nilai_min
+nilai_max
+nilai_mean
+stdev
+sample_count
+no_data_count
+median
+p10
+p90
+</pre></div>
+</div>
+<p>Table View digunakan untuk memastikan bahwa data dari database telah berhasil masuk ke KNIME.</p>
+</section>
+<section id="analisis-statistik-menggunakan-knime">
+<h2>6. Analisis Statistik Menggunakan KNIME<a class="headerlink" href="#analisis-statistik-menggunakan-knime" title="Link to this heading">#</a></h2>
+<p>Setelah data berhasil dibaca, node <strong>Statistics</strong> digunakan untuk memperoleh informasi statistik dari dataset.</p>
+<p>Pada hasil Statistics KNIME terdapat beberapa properti, yaitu:</p>
+<ul class="simple">
+<li><p>No. Missing</p></li>
+<li><p>No. Valid</p></li>
+<li><p>Min</p></li>
+<li><p>Max</p></li>
+<li><p>Q1</p></li>
+<li><p>Mean</p></li>
+<li><p>Q3</p></li>
+<li><p>Median</p></li>
+<li><p>Std. Dev.</p></li>
+<li><p>Variance</p></li>
+<li><p>Skewness</p></li>
+<li><p>Kurtosis</p></li>
+<li><p>Mode</p></li>
+</ul>
+<p>Hasil Statistics menunjukkan bahwa sebagian besar kolom memiliki <strong>210 data valid</strong>, sedangkan terdapat perbedaan pada beberapa kolom.</p>
+<p>Kolom <code class="docutils literal notranslate"><span class="pre">sample_count</span></code> memiliki 211 data valid karena seluruh data bernilai 8.</p>
+<p>Kolom <code class="docutils literal notranslate"><span class="pre">no_data_count</span></code> juga memiliki 211 data valid.</p>
+<p>Sementara itu, kolom <code class="docutils literal notranslate"><span class="pre">stdev</span></code> hanya memiliki 182 data valid. Hal ini berarti terdapat 29 nilai yang tidak tersedia pada kolom <code class="docutils literal notranslate"><span class="pre">stdev</span></code>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="hasil-statistics-dari-knime">
+<h1>7. Hasil Statistics dari KNIME<a class="headerlink" href="#hasil-statistics-dari-knime" title="Link to this heading">#</a></h1>
+<p>Berikut adalah hasil yang diperoleh dari Statistics KNIME berdasarkan output yang digunakan.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Column</p></th>
+<th class="head text-right"><p>Missing</p></th>
+<th class="head text-right"><p>Valid</p></th>
+<th class="head text-right"><p>Min</p></th>
+<th class="head text-right"><p>Max</p></th>
+<th class="head text-right"><p>Q1</p></th>
+<th class="head text-right"><p>Mean</p></th>
+<th class="head text-right"><p>Q3</p></th>
+<th class="head text-right"><p>Median</p></th>
+<th class="head text-right"><p>Std. Dev.</p></th>
+<th class="head text-right"><p>Skewness</p></th>
+<th class="head text-right"><p>Kurtosis</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">median</span></code></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>210</p></td>
+<td class="text-right"><p>-9.975387E-6</p></td>
+<td class="text-right"><p>4.369137E-5</p></td>
+<td class="text-right"><p>9.126466E-6</p></td>
+<td class="text-right"><p>1.524748E-5</p></td>
+<td class="text-right"><p>2.076363E-5</p></td>
+<td class="text-right"><p>1.456842E-5</p></td>
+<td class="text-right"><p>7.136036E-6</p></td>
+<td class="text-right"><p>0.003074</p></td>
+<td class="text-right"><p>sesuai output KNIME</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">nilai_max</span></code></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>210</p></td>
+<td class="text-right"><p>-9.975387E-6</p></td>
+<td class="text-right"><p>4.369137E-5</p></td>
+<td class="text-right"><p>1.498667E-5</p></td>
+<td class="text-right"><p>2.256255E-5</p></td>
+<td class="text-right"><p>2.678749E-5</p></td>
+<td class="text-right"><p>2.082930E-5</p></td>
+<td class="text-right"><p>7.687196E-6</p></td>
+<td class="text-right"><p>0.004395</p></td>
+<td class="text-right"><p>sesuai output KNIME</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>210</p></td>
+<td class="text-right"><p>-9.975387E-6</p></td>
+<td class="text-right"><p>3.673395E-5</p></td>
+<td class="text-right"><p>8.709820E-6</p></td>
+<td class="text-right"><p>1.365682E-5</p></td>
+<td class="text-right"><p>1.819711E-5</p></td>
+<td class="text-right"><p>1.327631E-5</p></td>
+<td class="text-right"><p>6.110534E-6</p></td>
+<td class="text-right"><p>0.002801</p></td>
+<td class="text-right"><p>sesuai output KNIME</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">nilai_min</span></code></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>210</p></td>
+<td class="text-right"><p>-2.121630E-5</p></td>
+<td class="text-right"><p>3.673395E-5</p></td>
+<td class="text-right"><p>1.470000E-9</p></td>
+<td class="text-right"><p>5.439857E-6</p></td>
+<td class="text-right"><p>1.107971E-5</p></td>
+<td class="text-right"><p>6.060067E-6</p></td>
+<td class="text-right"><p>6.569987E-6</p></td>
+<td class="text-right"><p>0.001279</p></td>
+<td class="text-right"><p>sesuai output KNIME</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">no_data_count</span></code></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>211</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>7</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>1.672986</p></td>
+<td class="text-right"><p>4</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>2.087374</p></td>
+<td class="text-right"><p>353</p></td>
+<td class="text-right"><p>sesuai output KNIME</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">p10</span></code></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>210</p></td>
+<td class="text-right"><p>-2.121630E-5</p></td>
+<td class="text-right"><p>3.673395E-5</p></td>
+<td class="text-right"><p>2.417064E-6</p></td>
+<td class="text-right"><p>8.011721E-6</p></td>
+<td class="text-right"><p>1.361348E-5</p></td>
+<td class="text-right"><p>8.280615E-6</p></td>
+<td class="text-right"><p>6.789615E-6</p></td>
+<td class="text-right"><p>0.001747</p></td>
+<td class="text-right"><p>sesuai output KNIME</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">p90</span></code></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>210</p></td>
+<td class="text-right"><p>-9.975387E-6</p></td>
+<td class="text-right"><p>4.369137E-5</p></td>
+<td class="text-right"><p>1.498667E-5</p></td>
+<td class="text-right"><p>2.256255E-5</p></td>
+<td class="text-right"><p>2.678749E-5</p></td>
+<td class="text-right"><p>2.082930E-5</p></td>
+<td class="text-right"><p>7.687196E-6</p></td>
+<td class="text-right"><p>0.004395</p></td>
+<td class="text-right"><p>sesuai output KNIME</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sample_count</span></code></p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>211</p></td>
+<td class="text-right"><p>8</p></td>
+<td class="text-right"><p>8</p></td>
+<td class="text-right"><p>8</p></td>
+<td class="text-right"><p>8</p></td>
+<td class="text-right"><p>8</p></td>
+<td class="text-right"><p>8</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">stdev</span></code></p></td>
+<td class="text-right"><p>29</p></td>
+<td class="text-right"><p>182</p></td>
+<td class="text-right"><p>0</p></td>
+<td class="text-right"><p>3.14E-5</p></td>
+<td class="text-right"><p>3.318747E-6</p></td>
+<td class="text-right"><p>5.627754E-6</p></td>
+<td class="text-right"><p>7.988738E-6</p></td>
+<td class="text-right"><p>5.667744E-6</p></td>
+<td class="text-right"><p>2.969852E-6</p></td>
+<td class="text-right"><p>0.001196</p></td>
+<td class="text-right"><p>sesuai output KNIME</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Catatan:</strong> Nilai <code class="docutils literal notranslate"><span class="pre">Skewness</span></code> dan <code class="docutils literal notranslate"><span class="pre">Kurtosis</span></code> pada tabel di atas harus dibaca berdasarkan posisi kolom pada output Statistics KNIME yang ditampilkan. Angka <code class="docutils literal notranslate"><span class="pre">0.0030739</span></code>, <code class="docutils literal notranslate"><span class="pre">0.0043949</span></code>, <code class="docutils literal notranslate"><span class="pre">0.0028013</span></code>, dan seterusnya pada output yang dikirim merupakan nilai setelah Std. Dev. dan Variance sesuai struktur output Statistics.</p>
+<section id="penjelasan-setiap-properti-statistik">
+<h2>8. Penjelasan Setiap Properti Statistik<a class="headerlink" href="#penjelasan-setiap-properti-statistik" title="Link to this heading">#</a></h2>
+<section id="column">
+<h3>8.1 Column<a class="headerlink" href="#column" title="Link to this heading">#</a></h3>
+<p>Column menunjukkan nama variabel yang sedang dianalisis.</p>
+<p>Contohnya:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Column = nilai_mean
+</pre></div>
+</div>
+<p>berarti seluruh statistik pada baris tersebut dihitung berdasarkan 210 data valid pada kolom <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code>.</p>
+</section>
+<section id="no-missing">
+<h3>8.2 No. Missing<a class="headerlink" href="#no-missing" title="Link to this heading">#</a></h3>
+<p>No. Missing menunjukkan jumlah nilai yang tidak tersedia atau kosong pada suatu kolom.</p>
+<p>Berdasarkan hasil KNIME:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">median</span></code> = 0 missing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nilai_max</span></code> = 0 missing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code> = 0 missing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nilai_min</span></code> = 0 missing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">no_data_count</span></code> = 0 missing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p10</span></code> = 0 missing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p90</span></code> = 0 missing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sample_count</span></code> = 0 missing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stdev</span></code> = 29 missing</p></li>
+</ul>
+<p>Jadi, terdapat <strong>29 nilai missing pada kolom <code class="docutils literal notranslate"><span class="pre">stdev</span></code></strong>.</p>
+<p>Hal tersebut menyebabkan jumlah data valid <code class="docutils literal notranslate"><span class="pre">stdev</span></code> hanya:</p>
+<div class="math notranslate nohighlight">
+\[
+211-29=182
+\]</div>
+</section>
+<section id="no-valid">
+<h3>8.3 No. Valid<a class="headerlink" href="#no-valid" title="Link to this heading">#</a></h3>
+<p>No. Valid menunjukkan jumlah data yang tersedia dan dapat digunakan untuk perhitungan statistik.</p>
+<p>Contoh pada <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code>:</p>
+<div class="math notranslate nohighlight">
+\[
+No.Valid=210
+\]</div>
+<p>Sedangkan <code class="docutils literal notranslate"><span class="pre">sample_count</span></code> memiliki:</p>
+<div class="math notranslate nohighlight">
+\[
+No.Valid=211
+\]</div>
+<p>Untuk <code class="docutils literal notranslate"><span class="pre">stdev</span></code>:</p>
+<div class="math notranslate nohighlight">
+\[
+No.Valid=182
+\]</div>
+<p>Karena:</p>
+<div class="math notranslate nohighlight">
+\[
+211-29=182
+\]</div>
+</section>
+<section id="min">
+<h3>8.4 Min<a class="headerlink" href="#min" title="Link to this heading">#</a></h3>
+<p>Min menunjukkan nilai terkecil dalam suatu kolom.</p>
+<p>Sebagai contoh, pada kolom <code class="docutils literal notranslate"><span class="pre">nilai_min</span></code>, hasil KNIME menunjukkan:</p>
+<div class="math notranslate nohighlight">
+\[
+Min=-2.12162976822583\times10^{-5}
+\]</div>
+<p>atau:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>-0.0000212162976822583
+</pre></div>
+</div>
+<p>Jadi, nilai paling kecil yang terdapat pada kolom <code class="docutils literal notranslate"><span class="pre">nilai_min</span></code> adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{-0.0000212162976822583}
+\]</div>
+</section>
+<section id="max">
+<h3>8.5 Max<a class="headerlink" href="#max" title="Link to this heading">#</a></h3>
+<p>Max menunjukkan nilai terbesar dalam suatu kolom.</p>
+<p>Pada kolom <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code>, KNIME menghasilkan:</p>
+<div class="math notranslate nohighlight">
+\[
+Max=3.6733948945766315\times10^{-5}
+\]</div>
+<p>atau:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0.000036733948945766315
+</pre></div>
+</div>
+<p>Dengan demikian, nilai terbesar pada kolom <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code> adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{0.000036733948945766315}
+\]</div>
+</section>
+<section id="q1">
+<h3>8.6 Q1<a class="headerlink" href="#q1" title="Link to this heading">#</a></h3>
+<p>Q1 atau <strong>Quartile 1</strong> menunjukkan nilai batas 25% data terbawah.</p>
+<p>Pada kolom <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code>, KNIME menghasilkan:</p>
+<div class="math notranslate nohighlight">
+\[
+Q1=8.709820363606013\times10^{-6}
+\]</div>
+<p>atau:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0.000008709820363606013
+</pre></div>
+</div>
+<p>Artinya, sekitar 25% data <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code> berada di bawah atau sama dengan nilai tersebut.</p>
+</section>
+<section id="mean">
+<h3>8.7 Mean<a class="headerlink" href="#mean" title="Link to this heading">#</a></h3>
+<p>Mean merupakan rata-rata seluruh data valid.</p>
+<p>Rumus:</p>
+<div class="math notranslate nohighlight">
+\[
+Mean=\frac{\sum_{i=1}^{n}x_i}{n}
+\]</div>
+<p>Pada kolom <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code>, KNIME menghasilkan:</p>
+<div class="math notranslate nohighlight">
+\[
+Mean=1.36568210251653\times10^{-5}
+\]</div>
+<p>atau:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0.0000136568210251653
+</pre></div>
+</div>
+<p>Karena terdapat 210 data valid, secara konsep perhitungannya adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+Mean=
+\frac{
+x_1+x_2+\cdots+x_{210}
+}{210}
+\]</div>
+<p>Hasilnya:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{0.0000136568210251653}
+\]</div>
+</section>
+<section id="q3">
+<h3>8.8 Q3<a class="headerlink" href="#q3" title="Link to this heading">#</a></h3>
+<p>Q3 atau <strong>Quartile 3</strong> merupakan nilai batas 75% data.</p>
+<p>Pada kolom <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code>, hasil KNIME:</p>
+<div class="math notranslate nohighlight">
+\[
+Q3=1.8197112240159186\times10^{-5}
+\]</div>
+<p>atau:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0.000018197112240159186
+</pre></div>
+</div>
+<p>Artinya, sekitar 75% data <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code> berada di bawah atau sama dengan nilai tersebut.</p>
+</section>
+<section id="median">
+<h3>8.9 Median<a class="headerlink" href="#median" title="Link to this heading">#</a></h3>
+<p>Median merupakan nilai tengah dari data setelah data diurutkan.</p>
+<p>Pada kolom <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code>, KNIME menghasilkan:</p>
+<div class="math notranslate nohighlight">
+\[
+Median=1.3276309815521241\times10^{-5}
+\]</div>
+<p>atau:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0.000013276309815521241
+</pre></div>
+</div>
+<p>Karena terdapat 210 data valid, median ditentukan berdasarkan posisi tengah data yang telah diurutkan.</p>
+<p>Secara konsep:</p>
+<div class="math notranslate nohighlight">
+\[
+Median=
+\frac{x_{105}+x_{106}}{2}
+\]</div>
+<p>Hasil yang diperoleh KNIME adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{0.000013276309815521241}
+\]</div>
+</section>
+<section id="std-dev">
+<h3>8.10 Std. Dev.<a class="headerlink" href="#std-dev" title="Link to this heading">#</a></h3>
+<p>Std. Dev. atau <strong>Standard Deviation</strong> menunjukkan tingkat penyebaran data terhadap nilai rata-ratanya.</p>
+<p>Pada kolom <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code>, KNIME menghasilkan:</p>
+<div class="math notranslate nohighlight">
+\[
+Std.Dev.=6.110534047616307\times10^{-6}
+\]</div>
+<p>atau:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0.000006110534047616307
+</pre></div>
+</div>
+<p>Nilai tersebut menunjukkan tingkat penyebaran data <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code> terhadap rata-ratanya.</p>
+<p>Untuk kolom <code class="docutils literal notranslate"><span class="pre">stdev</span></code>, hasil KNIME adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+Std.Dev.=2.9698516434839164\times10^{-6}
+\]</div>
+<p>Perhitungan <code class="docutils literal notranslate"><span class="pre">stdev</span></code> hanya menggunakan 182 data valid karena terdapat 29 nilai missing.</p>
+</section>
+<section id="variance">
+<h3>8.11 Variance<a class="headerlink" href="#variance" title="Link to this heading">#</a></h3>
+<p>Variance merupakan ukuran penyebaran data yang berkaitan dengan kuadrat selisih data terhadap rata-rata.</p>
+<p>Pada output KNIME, nilai variance dapat digunakan untuk mengetahui tingkat variasi data secara kuadrat.</p>
+<p>Secara umum:</p>
+<div class="math notranslate nohighlight">
+\[
+Variance=Std.Dev.^2
+\]</div>
+<p>Sebagai contoh, untuk <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code>, jika standar deviasinya:</p>
+<div class="math notranslate nohighlight">
+\[
+6.110534047616307\times10^{-6}
+\]</div>
+<p>maka variance secara matematis berkaitan dengan kuadrat nilai tersebut:</p>
+<div class="math notranslate nohighlight">
+\[
+(6.110534047616307\times10^{-6})^2
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\approx3.733\times10^{-11}
+\]</div>
+</section>
+<section id="skewness">
+<h3>8.12 Skewness<a class="headerlink" href="#skewness" title="Link to this heading">#</a></h3>
+<p>Skewness menunjukkan kemencengan distribusi data.</p>
+<p>Pada output KNIME, nilai skewness digunakan untuk mengetahui apakah distribusi cenderung simetris atau miring ke salah satu sisi.</p>
+<p>Untuk kolom <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code>, nilai skewness pada output adalah sekitar:</p>
+<div class="math notranslate nohighlight">
+\[
+0.002801301371074982
+\]</div>
+<p>Nilai tersebut sangat dekat dengan nol.</p>
+<p>Karena:</p>
+<div class="math notranslate nohighlight">
+\[
+Skewness\approx0
+\]</div>
+<p>maka distribusi <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code> dapat dikatakan <strong>relatif simetris</strong>.</p>
+</section>
+<section id="kurtosis">
+<h3>8.13 Kurtosis<a class="headerlink" href="#kurtosis" title="Link to this heading">#</a></h3>
+<p>Kurtosis menunjukkan karakteristik bentuk distribusi data, terutama terkait ketebalan ekor dan keberadaan nilai ekstrem.</p>
+<p>Nilai kurtosis harus dibaca dari kolom Kurtosis pada output Statistics KNIME.</p>
+<p>Interpretasi umumnya:</p>
+<ul class="simple">
+<li><p>mendekati 0 → distribusi mendekati distribusi normal jika yang digunakan adalah excess kurtosis;</p></li>
+<li><p>positif → ekor distribusi relatif lebih berat;</p></li>
+<li><p>negatif → ekor distribusi relatif lebih ringan.</p></li>
+</ul>
+<p>Dalam dataset ini, interpretasi kurtosis dilakukan berdasarkan angka yang ditampilkan langsung oleh KNIME.</p>
+</section>
+<section id="mode">
+<h3>8.14 Mode<a class="headerlink" href="#mode" title="Link to this heading">#</a></h3>
+<p>Mode merupakan nilai yang paling sering muncul dalam suatu kolom.</p>
+<p>Pada <code class="docutils literal notranslate"><span class="pre">sample_count</span></code>, hasil KNIME menunjukkan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>8 (211; 100.0%)
+</pre></div>
+</div>
+<p>Artinya nilai:</p>
+<div class="math notranslate nohighlight">
+\[
+8
+\]</div>
+<p>muncul sebanyak:</p>
+<div class="math notranslate nohighlight">
+\[
+211
+\]</div>
+<p>kali atau:</p>
+<div class="math notranslate nohighlight">
+\[
+100\%
+\]</div>
+<p>dari seluruh data.</p>
+<p>Dengan demikian, mode <code class="docutils literal notranslate"><span class="pre">sample_count</span></code> adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{8}
+\]</div>
+<p>Untuk <code class="docutils literal notranslate"><span class="pre">no_data_count</span></code>, mode yang ditampilkan adalah:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0 (126; 59.72%)
+</pre></div>
+</div>
+<p>Artinya nilai 0 muncul sebanyak 126 kali atau sekitar 59,72% dari data.</p>
+</section>
+</section>
+<section id="analisis-khusus-kolom-sample-count">
+<h2>9. Analisis Khusus Kolom <code class="docutils literal notranslate"><span class="pre">sample_count</span></code><a class="headerlink" href="#analisis-khusus-kolom-sample-count" title="Link to this heading">#</a></h2>
+<p>Kolom <code class="docutils literal notranslate"><span class="pre">sample_count</span></code> memiliki karakteristik yang sangat konsisten.</p>
+<p>Hasil KNIME:</p>
+<div class="math notranslate nohighlight">
+\[
+Min=8
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Q1=8
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Mean=8
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Q3=8
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Median=8
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Max=8
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Std.Dev.=0
+\]</div>
+<p>Mode:</p>
+<div class="math notranslate nohighlight">
+\[
+8
+\]</div>
+<p>sebanyak:</p>
+<div class="math notranslate nohighlight">
+\[
+211\text{ data}
+\]</div>
+<p>atau:</p>
+<div class="math notranslate nohighlight">
+\[
+100\%
+\]</div>
+<p>Hal ini menunjukkan bahwa seluruh baris memiliki jumlah sampel yang sama, yaitu 8.</p>
+<p>Karena tidak terdapat variasi:</p>
+<div class="math notranslate nohighlight">
+\[
+x_i-\bar{x}=8-8=0
+\]</div>
+<p>untuk seluruh data.</p>
+<p>Akibatnya:</p>
+<div class="math notranslate nohighlight">
+\[
+Std.Dev.=0
+\]</div>
+</section>
+<section id="analisis-khusus-no-data-count">
+<h2>10. Analisis Khusus <code class="docutils literal notranslate"><span class="pre">no_data_count</span></code><a class="headerlink" href="#analisis-khusus-no-data-count" title="Link to this heading">#</a></h2>
+<p>Kolom <code class="docutils literal notranslate"><span class="pre">no_data_count</span></code> menunjukkan jumlah data yang tidak tersedia pada setiap tanggal.</p>
+<p>Hasil KNIME:</p>
+<div class="math notranslate nohighlight">
+\[
+Min=0
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Q1=0
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Mean=1.6729857819905214
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Median=0
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Q3=4
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Max=7
+\]</div>
+<p>Std. Dev.:</p>
+<div class="math notranslate nohighlight">
+\[
+2.0873744974281796
+\]</div>
+<p>Dari mode:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0 (126; 59.72%)
+</pre></div>
+</div>
+<p>dapat diketahui bahwa nilai 0 merupakan nilai yang paling sering muncul.</p>
+<p>Artinya, sebanyak 126 dari 211 data memiliki <code class="docutils literal notranslate"><span class="pre">no_data_count</span> <span class="pre">=</span> <span class="pre">0</span></code>.</p>
+<p>Selain itu, terdapat:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>6 = 15 data
+7 = 15 data
+1 = 14 data
+4 = 14 data
+2 = 13 data
+5 = 10 data
+3 = 4 data
+</pre></div>
+</div>
+<p>Sehingga nilai <code class="docutils literal notranslate"><span class="pre">no_data_count</span></code> memiliki variasi dari 0 sampai 7.</p>
+</section>
+<section id="analisis-khusus-kolom-stdev">
+<h2>11. Analisis Khusus Kolom <code class="docutils literal notranslate"><span class="pre">stdev</span></code><a class="headerlink" href="#analisis-khusus-kolom-stdev" title="Link to this heading">#</a></h2>
+<p>Kolom <code class="docutils literal notranslate"><span class="pre">stdev</span></code> memiliki karakteristik berbeda dari kolom lainnya.</p>
+<p>Hasil KNIME menunjukkan:</p>
+<div class="math notranslate nohighlight">
+\[
+No.Missing=29
+\]</div>
+<p>dan:</p>
+<div class="math notranslate nohighlight">
+\[
+No.Valid=182
+\]</div>
+<p>Hal tersebut menunjukkan bahwa dari total 211 baris:</p>
+<div class="math notranslate nohighlight">
+\[
+211-182=29
+\]</div>
+<p>data pada kolom <code class="docutils literal notranslate"><span class="pre">stdev</span></code> tidak tersedia.</p>
+<p>Nilai minimum:</p>
+<div class="math notranslate nohighlight">
+\[
+0
+\]</div>
+<p>Nilai maksimum:</p>
+<div class="math notranslate nohighlight">
+\[
+3.14\times10^{-5}
+\]</div>
+<p>Mean:</p>
+<div class="math notranslate nohighlight">
+\[
+5.627753942283882\times10^{-6}
+\]</div>
+<p>Median:</p>
+<div class="math notranslate nohighlight">
+\[
+5.667743951829638\times10^{-6}
+\]</div>
+<p>Std. Dev.:</p>
+<div class="math notranslate nohighlight">
+\[
+2.9698516434839164\times10^{-6}
+\]</div>
+<p>Dengan demikian, kolom <code class="docutils literal notranslate"><span class="pre">stdev</span></code> mempunyai jumlah data valid yang lebih sedikit dibandingkan sebagian besar kolom lainnya.</p>
+</section>
+<section id="contoh-perhitungan-berdasarkan-data-asli">
+<h2>12. Contoh Perhitungan Berdasarkan Data Asli<a class="headerlink" href="#contoh-perhitungan-berdasarkan-data-asli" title="Link to this heading">#</a></h2>
+<p>Untuk memberikan contoh perhitungan, digunakan lima baris pertama dari dataset pada kolom <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tanggal</p></th>
+<th class="head text-right"><p>Nilai <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2026-08-24</p></td>
+<td class="text-right"><p>0.000025862272195809055</p></td>
+</tr>
+<tr class="row-odd"><td><p>2026-08-23</p></td>
+<td class="text-right"><p>0.000010208570919140974</p></td>
+</tr>
+<tr class="row-even"><td><p>2026-08-22</p></td>
+<td class="text-right"><p>0.00001802205906642484</p></td>
+</tr>
+<tr class="row-odd"><td><p>2026-08-21</p></td>
+<td class="text-right"><p>0.00000897044879079087</p></td>
+</tr>
+<tr class="row-even"><td><p>2026-08-20</p></td>
+<td class="text-right"><p>0.000009069927756399922</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="mean-dari-lima-data-asli">
+<h3>12.1 Mean dari Lima Data Asli<a class="headerlink" href="#mean-dari-lima-data-asli" title="Link to this heading">#</a></h3>
+<p>Rumus:</p>
+<div class="math notranslate nohighlight">
+\[
+Mean=\frac{\sum x}{n}
+\]</div>
+<p>Maka:</p>
+<div class="math notranslate nohighlight">
+\[
+Mean=
+\frac{
+0.000025862272195809055+
+0.000010208570919140974+
+0.00001802205906642484+
+0.00000897044879079087+
+0.000009069927756399922
+}{5}
+\]</div>
+<p>Hasil:</p>
+<div class="math notranslate nohighlight">
+\[
+Mean\approx0.00001442665574571313
+\]</div>
+<p>atau:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{1.442665574571313\times10^{-5}}
+\]</div>
+</section>
+<section id="median-dari-lima-data-asli">
+<h3>12.2 Median dari Lima Data Asli<a class="headerlink" href="#median-dari-lima-data-asli" title="Link to this heading">#</a></h3>
+<p>Data diurutkan dari terkecil sampai terbesar:</p>
+<div class="math notranslate nohighlight">
+\[
+0.00000897044879079087
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+0.000009069927756399922
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+0.000010208570919140974
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+0.00001802205906642484
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+0.000025862272195809055
+\]</div>
+<p>Karena terdapat lima data, nilai tengah adalah data ke-3:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{Median=0.000010208570919140974}
+\]</div>
+</section>
+<section id="min-dari-lima-data-asli">
+<h3>12.3 Min dari Lima Data Asli<a class="headerlink" href="#min-dari-lima-data-asli" title="Link to this heading">#</a></h3>
+<p>Nilai terkecil adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{0.00000897044879079087}
+\]</div>
+</section>
+<section id="max-dari-lima-data-asli">
+<h3>12.4 Max dari Lima Data Asli<a class="headerlink" href="#max-dari-lima-data-asli" title="Link to this heading">#</a></h3>
+<p>Nilai terbesar adalah:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{0.000025862272195809055}
+\]</div>
+</section>
+<section id="range-dari-lima-data-asli">
+<h3>12.5 Range dari Lima Data Asli<a class="headerlink" href="#range-dari-lima-data-asli" title="Link to this heading">#</a></h3>
+<p>Range dihitung dengan:</p>
+<div class="math notranslate nohighlight">
+\[
+Range=Max-Min
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Range=
+0.000025862272195809055-
+0.00000897044879079087
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+Range=
+0.000016891823405018185
+\]</div>
+<p>Jadi:</p>
+<div class="math notranslate nohighlight">
+\[
+\boxed{Range=0.000016891823405018185}
+\]</div>
+</section>
+</section>
+<section id="kesimpulan">
+<h2>13. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Berdasarkan proses yang telah dilakukan, dataset kualitas udara Kadur berhasil dipindahkan ke Aiven PostgreSQL dan kemudian diakses melalui KNIME.</p>
+<p>Workflow yang digunakan adalah:</p>
+<p>Hasil Statistics KNIME menunjukkan bahwa sebagian besar kolom memiliki 210 data valid, sedangkan <code class="docutils literal notranslate"><span class="pre">sample_count</span></code> dan <code class="docutils literal notranslate"><span class="pre">no_data_count</span></code> memiliki 211 data valid. Kolom <code class="docutils literal notranslate"><span class="pre">stdev</span></code> memiliki 182 data valid dan 29 nilai missing.</p>
+<p>Kolom <code class="docutils literal notranslate"><span class="pre">sample_count</span></code> mempunyai nilai yang sama pada seluruh baris, yaitu 8, sehingga mean, median, minimum, maksimum, dan mode semuanya bernilai 8, sedangkan standar deviasinya 0.</p>
+<p>Kolom <code class="docutils literal notranslate"><span class="pre">no_data_count</span></code> memiliki nilai antara 0 sampai 7 dengan mean sekitar 1,673. Nilai 0 merupakan mode dan muncul sebanyak 126 kali atau 59,72%.</p>
+<p>Untuk kolom <code class="docutils literal notranslate"><span class="pre">nilai_mean</span></code>, KNIME menghasilkan mean sebesar:</p>
+<div class="math notranslate nohighlight">
+\[
+1.36568210251653\times10^{-5}
+\]</div>
+<p>dan median:</p>
+<div class="math notranslate nohighlight">
+\[
+1.3276309815521241\times10^{-5}
+\]</div>
+<p>dengan nilai minimum:</p>
+<div class="math notranslate nohighlight">
+\[
+-9.975387001759373\times10^{-6}
+\]</div>
+<p>dan maksimum:</p>
+<div class="math notranslate nohighlight">
+\[
+3.6733948945766315\times10^{-5}
+\]</div>
+<p>Hasil tersebut menunjukkan bahwa KNIME berhasil digunakan untuk memperoleh gambaran statistik dari dataset yang telah disimpan pada cloud database Aiven PostgreSQL.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="bussiness_understanding.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Crawling Data</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Pemindahan Data ke Cloud (Aiven) dan Analisis Statistik Menggunakan KNIME</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">1. Tujuan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">2. Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#memindahkan-data-ke-aiven-postgresql">3. Memindahkan Data ke Aiven PostgreSQL</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menghubungkan-aiven-postgresql-dengan-knime">4. Menghubungkan Aiven PostgreSQL dengan KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#postgresql-connector">4.1 PostgreSQL Connector</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#db-table-selector">4.2 DB Table Selector</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#db-reader">4.3 DB Reader</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-data-menggunakan-table-view">5. Menampilkan Data Menggunakan Table View</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-statistik-menggunakan-knime">6. Analisis Statistik Menggunakan KNIME</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-statistics-dari-knime">7. Hasil Statistics dari KNIME</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-setiap-properti-statistik">8. Penjelasan Setiap Properti Statistik</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#column">8.1 Column</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-missing">8.2 No. Missing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#no-valid">8.3 No. Valid</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min">8.4 Min</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#max">8.5 Max</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q1">8.6 Q1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean">8.7 Mean</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#q3">8.8 Q3</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median">8.9 Median</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#std-dev">8.10 Std. Dev.</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance">8.11 Variance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skewness">8.12 Skewness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kurtosis">8.13 Kurtosis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mode">8.14 Mode</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-khusus-kolom-sample-count">9. Analisis Khusus Kolom <code class="docutils literal notranslate"><span class="pre">sample_count</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-khusus-no-data-count">10. Analisis Khusus <code class="docutils literal notranslate"><span class="pre">no_data_count</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-khusus-kolom-stdev">11. Analisis Khusus Kolom <code class="docutils literal notranslate"><span class="pre">stdev</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-berdasarkan-data-asli">12. Contoh Perhitungan Berdasarkan Data Asli</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-dari-lima-data-asli">12.1 Mean dari Lima Data Asli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median-dari-lima-data-asli">12.2 Median dari Lima Data Asli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#min-dari-lima-data-asli">12.3 Min dari Lima Data Asli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#max-dari-lima-data-asli">12.4 Max dari Lima Data Asli</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#range-dari-lima-data-asli">12.5 Range dari Lima Data Asli</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">13. Kesimpulan</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Intan Resti Haslindawati (240411100147)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
