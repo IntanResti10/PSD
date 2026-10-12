@@ -1,0 +1,2159 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>KLASIFIKASI TUTUPAN LAHAN BERBASIS CITRA SATELIT SENTINEL-2 MENGGUNAKAN RANDOM FOREST DI KABUPATEN PAMEKASAN, JAWA TIMUR &#8212; Proyek Sains Data - Intan Resti Haslindawati</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'uts_psd';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Analisis Data Time Series Kualitas Udara CO Kecamatan Kadur Menggunakan Ekstraksi Fitur TSFEL" href="tugas_pertemuan3.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/intan.jpeg" class="logo__image only-light" alt="Proyek Sains Data - Intan Resti Haslindawati - Home"/>
+    <img src="_static/intan.jpeg" class="logo__image only-dark pst-js-only" alt="Proyek Sains Data - Intan Resti Haslindawati - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Proyek Sains Data - Portfolio Materi
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bussiness_understanding.html">Crawling Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tugas_pertemuan2.html">Pemindahan Data ke Cloud (Aiven) dan Analisis Statistik Menggunakan KNIME</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="tugas_pertemuan3.html">Analisis Data Time Series Kualitas Udara CO Kecamatan Kadur Menggunakan Ekstraksi Fitur TSFEL</a></li>
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">KLASIFIKASI TUTUPAN LAHAN BERBASIS CITRA SATELIT SENTINEL-2 MENGGUNAKAN RANDOM FOREST DI KABUPATEN PAMEKASAN, JAWA TIMUR</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Futs_psd.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/uts_psd.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>KLASIFIKASI TUTUPAN LAHAN BERBASIS CITRA SATELIT SENTINEL-2 MENGGUNAKAN RANDOM FOREST DI KABUPATEN PAMEKASAN, JAWA TIMUR</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">KLASIFIKASI TUTUPAN LAHAN BERBASIS CITRA SATELIT SENTINEL-2 MENGGUNAKAN RANDOM FOREST DI KABUPATEN PAMEKASAN, JAWA TIMUR</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">1. BUSINESS UNDERSTANDING</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identifikasi-masalah">1.2 Identifikasi Masalah</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-penelitian">1.3 Tujuan Penelitian</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat">1.4 Manfaat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruang-lingkup">1.5 Ruang Lingkup</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. DATA UNDERSTANDING</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-citra-satelit-sentinel-2">2.1 Data Citra Satelit Sentinel-2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-poligon-geojson">2.2 Data Poligon GeoJSON</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kelas-tutupan-lahan">2.3 Kelas Tutupan Lahan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemeriksaan-awal-data">2.4 Pemeriksaan Awal Data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-acquisition">3. DATA ACQUISITION</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">3.1 Pengumpulan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-yang-digunakan">3.2 File yang Digunakan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-akuisisi-data">3.3 Tujuan Akuisisi Data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">4. DATA PREPARATION</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-lingkungan-pengolahan">4.1 Persiapan Lingkungan Pengolahan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-file-band">4.2 Membaca File Band</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembentukan-ndvi">4.3 Pembentukan NDVI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembentukan-ndmi">4.4 Pembentukan NDMI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penggabungan-fitur">4.5 Penggabungan Fitur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rasterisasi-poligon">4.6 Rasterisasi Poligon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-id-poligon">4.7 Membuat ID Poligon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyaring-piksel-tidak-valid">4.8 Menyaring Piksel Tidak Valid</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#training-dan-testing">5. TRAINING DAN TESTING</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-dataset">5.1 Pembagian Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-pembagian">5.2 Hasil Pembagian</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemeriksaan-jumlah-poligon">5.3 Pemeriksaan Jumlah Poligon</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-random-forest">6. MODELING: RANDOM FOREST</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemilihan-algoritma">6.1 Pemilihan Algoritma</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-model">6.2 Konfigurasi Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-training">6.3 Proses Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-testing">6.4 Proses Testing</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">7. EVALUATION</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metrik-evaluasi">7.1 Metrik Evaluasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akurasi">7.2 Hasil Akurasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-report">7.3 Classification Report</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi">Interpretasi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">7.4 Confusion Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-evaluasi">7.5 Kesimpulan Evaluasi</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-seluruh-citra">8. KLASIFIKASI SELURUH CITRA</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-klasifikasi">8.1 Tujuan Klasifikasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-piksel-valid">8.2 Menentukan Piksel Valid</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menerapkan-model">8.3 Menerapkan Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-hasil-dalam-geotiff">8.4 Menyimpan Hasil dalam GeoTIFF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-file-hasil-klasifikasi">8.5 Menampilkan File Hasil Klasifikasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-nilai-piksel">8.6 Ringkasan Nilai Piksel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengunduh-file-geotiff-dari-google-colab">8.7 Mengunduh File GeoTIFF dari Google Colab</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-peta-tutupan-lahan">9. VISUALISASI PETA TUTUPAN LAHAN</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-visualisasi">9.1 Tujuan Visualisasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-klasifikasi">9.2 Layer Klasifikasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-poligon-geojson">9.3 Layer Poligon GeoJSON</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kontrol-layer-leaflet">9.4 Kontrol Layer Leaflet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-kode-visualisasi-raster-hasil-klasifikasi">9.5 Contoh Kode Visualisasi Raster Hasil Klasifikasi</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-aplikasi-streamlit">10. IMPLEMENTASI APLIKASI STREAMLIT</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-aplikasi">10.1 Tujuan Aplikasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#komponen-aplikasi">10.2 Komponen Aplikasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-yang-diperlukan">10.3 File yang Diperlukan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-kode-streamlit">10.4 Struktur Kode Streamlit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment">10.5 Deployment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengujian-aplikasi">10.6 Pengujian Aplikasi</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#business-flow-alur-pengolahan">11. BUSINESS FLOW: ALUR PENGOLAHAN</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">12. KESIMPULAN</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="klasifikasi-tutupan-lahan-berbasis-citra-satelit-sentinel-2-menggunakan-random-forest-di-kabupaten-pamekasan-jawa-timur">
+<h1>KLASIFIKASI TUTUPAN LAHAN BERBASIS CITRA SATELIT SENTINEL-2 MENGGUNAKAN RANDOM FOREST DI KABUPATEN PAMEKASAN, JAWA TIMUR<a class="headerlink" href="#klasifikasi-tutupan-lahan-berbasis-citra-satelit-sentinel-2-menggunakan-random-forest-di-kabupaten-pamekasan-jawa-timur" title="Link to this heading">#</a></h1>
+<p><strong>Pengganti UTS — Proyek Sains Data</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Informasi</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Judul proyek</p></td>
+<td><p>Klasifikasi Tutupan Lahan</p></td>
+</tr>
+<tr class="row-odd"><td><p>Wilayah penelitian</p></td>
+<td><p>Kabupaten Pamekasan, Jawa Timur</p></td>
+</tr>
+<tr class="row-even"><td><p>Sumber citra</p></td>
+<td><p>Sentinel-2 Level-2A</p></td>
+</tr>
+<tr class="row-odd"><td><p>Algoritma</p></td>
+<td><p>Random Forest</p></td>
+</tr>
+<tr class="row-even"><td><p>Bahasa pemrograman</p></td>
+<td><p>Python</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pengolahan data</p></td>
+<td><p>Google Colab</p></td>
+</tr>
+<tr class="row-even"><td><p>Visualisasi peta</p></td>
+<td><p>Leaflet dan Folium</p></td>
+</tr>
+<tr class="row-odd"><td><p>Aplikasi web</p></td>
+<td><p>Streamlit</p></td>
+</tr>
+<tr class="row-even"><td><p>Format data spasial</p></td>
+<td><p>GeoJSON dan GeoTIFF</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Aplikasi hasil deployment:</strong><br />
+<a class="reference external" href="https://mcdgphzwukty3tappd4bpbu.streamlit.app/">https://mcdgphzwukty3tappd4bpbu.streamlit.app/</a></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="business-understanding">
+<h1>1. BUSINESS UNDERSTANDING<a class="headerlink" href="#business-understanding" title="Link to this heading">#</a></h1>
+<section id="latar-belakang">
+<h2>1.1 Latar Belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h2>
+<p>Tutupan lahan merupakan informasi yang menggambarkan kondisi fisik permukaan bumi, seperti kawasan terbangun, lahan pertanian, badan air, hutan, dan hutan mangrove. Informasi ini penting untuk memahami karakteristik wilayah dan mendukung kegiatan pemantauan lingkungan.</p>
+<p>Pengamatan tutupan lahan secara manual dapat membutuhkan waktu dan tenaga, terutama ketika wilayah yang diamati cukup luas. Salah satu pendekatan yang dapat digunakan adalah pemanfaatan citra satelit dan algoritma pembelajaran mesin untuk mengelompokkan piksel berdasarkan karakteristik spektralnya.</p>
+<p>Pada proyek ini digunakan citra satelit Sentinel-2 Level-2A sebagai sumber data utama. Informasi spektral dari band B04, B8A, dan B11 dimanfaatkan bersama indeks spektral NDVI dan NDMI sebagai fitur masukan algoritma Random Forest.</p>
+<p>Wilayah penelitian berada di Kabupaten Pamekasan, Jawa Timur. Sistem dikembangkan untuk mengklasifikasikan lima kelas tutupan lahan, yaitu bangunan (<em>building</em>), lahan pertanian (<em>farmland</em>), badan air (<em>water body</em>), hutan (<em>forest</em>), dan hutan mangrove (<em>mangrove</em>).</p>
+<p>Hasil pengolahan disimpan dalam bentuk raster GeoTIFF dan divisualisasikan di atas peta satelit menggunakan Leaflet. Aplikasi kemudian dipublikasikan melalui Streamlit Community Cloud agar hasil klasifikasi dapat diakses melalui browser.</p>
+</section>
+<section id="identifikasi-masalah">
+<h2>1.2 Identifikasi Masalah<a class="headerlink" href="#identifikasi-masalah" title="Link to this heading">#</a></h2>
+<p>Permasalahan yang menjadi dasar pengembangan sistem adalah:</p>
+<ol class="arabic simple">
+<li><p>Diperlukan cara untuk mengelompokkan tutupan lahan berdasarkan karakteristik citra satelit.</p></li>
+<li><p>Lima kelas tutupan lahan memiliki karakteristik permukaan yang berbeda sehingga memerlukan fitur spektral yang sesuai.</p></li>
+<li><p>Hutan mangrove dan hutan biasa sama-sama memiliki vegetasi, sehingga diperlukan evaluasi kemampuan model dalam membedakan keduanya.</p></li>
+<li><p>Hasil klasifikasi perlu disajikan dalam bentuk peta agar distribusi spasialnya lebih mudah dipahami.</p></li>
+<li><p>Pengguna memerlukan antarmuka untuk memilih kelas tutupan lahan tanpa harus membaca data raster secara langsung.</p></li>
+</ol>
+</section>
+<section id="tujuan-penelitian">
+<h2>1.3 Tujuan Penelitian<a class="headerlink" href="#tujuan-penelitian" title="Link to this heading">#</a></h2>
+<p>Tujuan proyek ini adalah:</p>
+<ol class="arabic simple">
+<li><p>Mengembangkan model klasifikasi tutupan lahan menggunakan algoritma Random Forest.</p></li>
+<li><p>Memanfaatkan citra Sentinel-2 Level-2A dengan band B04, B8A, dan B11.</p></li>
+<li><p>Membentuk fitur tambahan berupa NDVI dan NDMI untuk mendukung klasifikasi.</p></li>
+<li><p>Mengelompokkan wilayah penelitian menjadi lima kelas tutupan lahan.</p></li>
+<li><p>Melakukan evaluasi model menggunakan accuracy, precision, recall, F1-score, dan confusion matrix.</p></li>
+<li><p>Menghasilkan file raster GeoTIFF yang berisi hasil klasifikasi.</p></li>
+<li><p>Menampilkan hasil klasifikasi di atas peta satelit menggunakan Leaflet.</p></li>
+<li><p>Menyediakan filter layer agar pengguna dapat memilih kelas tutupan lahan yang ingin ditampilkan.</p></li>
+<li><p>Menerapkan hasil pengolahan ke aplikasi web menggunakan Streamlit Community Cloud.</p></li>
+</ol>
+</section>
+<section id="manfaat">
+<h2>1.4 Manfaat<a class="headerlink" href="#manfaat" title="Link to this heading">#</a></h2>
+<p>Manfaat yang diharapkan dari proyek ini meliputi:</p>
+<ul class="simple">
+<li><p>Menyediakan visualisasi distribusi tutupan lahan secara spasial.</p></li>
+<li><p>Membantu pengguna mengamati persebaran lima kelas tutupan lahan.</p></li>
+<li><p>Menyediakan hasil klasifikasi yang dapat digunakan untuk analisis awal kondisi wilayah.</p></li>
+<li><p>Menunjukkan penerapan proses sains data dari pengolahan citra hingga penyajian hasil melalui aplikasi web.</p></li>
+</ul>
+</section>
+<section id="ruang-lingkup">
+<h2>1.5 Ruang Lingkup<a class="headerlink" href="#ruang-lingkup" title="Link to this heading">#</a></h2>
+<p>Penelitian dibatasi pada wilayah Kabupaten Pamekasan, Jawa Timur, dan lima kelas tutupan lahan. Data sampel awal berasal dari 50 poligon GeoJSON, dengan masing-masing 10 poligon untuk setiap kelas.</p>
+<p>Model menggunakan fitur spektral B04, B8A, B11, NDVI, dan NDMI. Algoritma yang digunakan adalah Random Forest dengan 200 pohon keputusan.</p>
+<p>Hasil penelitian berupa peta klasifikasi dan aplikasi web interaktif. Hasil model merupakan klasifikasi awal berdasarkan data sampel yang tersedia dan tidak secara otomatis menjadi peta referensi resmi seluruh wilayah.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-understanding">
+<h1>2. DATA UNDERSTANDING<a class="headerlink" href="#data-understanding" title="Link to this heading">#</a></h1>
+<section id="data-citra-satelit-sentinel-2">
+<h2>2.1 Data Citra Satelit Sentinel-2<a class="headerlink" href="#data-citra-satelit-sentinel-2" title="Link to this heading">#</a></h2>
+<p>Data citra yang digunakan adalah Sentinel-2 Level-2A. Band yang digunakan dalam pengolahan adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Band</p></th>
+<th class="head"><p>Nama umum</p></th>
+<th class="head"><p>Peran dalam proyek</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>B04</p></td>
+<td><p>Red</p></td>
+<td><p>Menyediakan informasi reflektansi kanal merah</p></td>
+</tr>
+<tr class="row-odd"><td><p>B8A</p></td>
+<td><p>Narrow Near Infrared</p></td>
+<td><p>Menyediakan informasi reflektansi inframerah dekat</p></td>
+</tr>
+<tr class="row-even"><td><p>B11</p></td>
+<td><p>Short-Wave Infrared</p></td>
+<td><p>Menyediakan informasi reflektansi inframerah gelombang pendek</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Band tersebut digunakan untuk membentuk fitur yang membantu model membedakan karakteristik permukaan. Perbedaan reflektansi dan indeks spektral dapat membantu proses klasifikasi, tetapi tidak menjamin bahwa semua kelas selalu dapat dipisahkan secara sempurna.</p>
+</section>
+<section id="data-poligon-geojson">
+<h2>2.2 Data Poligon GeoJSON<a class="headerlink" href="#data-poligon-geojson" title="Link to this heading">#</a></h2>
+<p>Data sampel disimpan dalam file:</p>
+<p><code class="docutils literal notranslate"><span class="pre">polygon.geojson</span></code></p>
+<p><img alt="citra1" src="_images/citra1.png" /></p>
+<p>File ini berisi geometri poligon dan atribut kelas yang digunakan sebagai label untuk melatih serta menguji model.</p>
+<p>Jumlah sampel awal adalah 50 poligon:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head text-right"><p>Jumlah poligon</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Building</p></td>
+<td class="text-right"><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>Farmland</p></td>
+<td class="text-right"><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>Water body</p></td>
+<td class="text-right"><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>Forest</p></td>
+<td class="text-right"><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>Mangrove</p></td>
+<td class="text-right"><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Total</strong></p></td>
+<td class="text-right"><p><strong>50</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Poligon digunakan untuk menentukan area yang diketahui kelasnya. Geometri kemudian dirasterisasi agar setiap piksel pada area sampel memiliki label kelas.</p>
+<p>Jumlah 50 poligon merupakan jumlah objek sampel, bukan jumlah keseluruhan piksel training dan testing. Satu poligon dapat mencakup banyak piksel.</p>
+</section>
+<section id="kelas-tutupan-lahan">
+<h2>2.3 Kelas Tutupan Lahan<a class="headerlink" href="#kelas-tutupan-lahan" title="Link to this heading">#</a></h2>
+<p>Sistem menggunakan lima kelas berikut:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>Kode</p></th>
+<th class="head"><p>Nama kelas</p></th>
+<th class="head"><p>Deskripsi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>1</p></td>
+<td><p>Building</p></td>
+<td><p>Bangunan atau kawasan terbangun</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>2</p></td>
+<td><p>Farmland</p></td>
+<td><p>Lahan pertanian, termasuk area sawah yang diberi label sesuai data sampel</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>3</p></td>
+<td><p>Water body</p></td>
+<td><p>Laut, danau, sungai, dan perairan lainnya</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>4</p></td>
+<td><p>Forest</p></td>
+<td><p>Kawasan hutan selain kelas mangrove</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>5</p></td>
+<td><p>Mangrove</p></td>
+<td><p>Kawasan hutan mangrove</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>0</p></td>
+<td><p>NoData</p></td>
+<td><p>Piksel yang tidak diklasifikasikan atau tidak valid</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Label tersebut digunakan secara konsisten dalam proses rasterisasi, training-testing, penyimpanan hasil, dan visualisasi.</p>
+</section>
+<section id="pemeriksaan-awal-data">
+<h2>2.4 Pemeriksaan Awal Data<a class="headerlink" href="#pemeriksaan-awal-data" title="Link to this heading">#</a></h2>
+<p>Berdasarkan pemeriksaan yang dilakukan sebelumnya, file GeoJSON memiliki 50 poligon dan tidak ditemukan geometri kosong atau tidak valid pada pemeriksaan awal. Sistem koordinatnya adalah EPSG:4326.</p>
+<p>Citra band yang digunakan memiliki ukuran raster 736 × 568 piksel. Ketiga band memiliki cakupan koordinat yang sama dengan wilayah poligon yang diperiksa.</p>
+<p>Kesamaan ukuran raster dan kesesuaian transformasi spasial penting agar piksel pada ketiga band dapat dibandingkan dan digabungkan sebagai fitur.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-acquisition">
+<h1>3. DATA ACQUISITION<a class="headerlink" href="#data-acquisition" title="Link to this heading">#</a></h1>
+<section id="pengumpulan-data">
+<h2>3.1 Pengumpulan Data<a class="headerlink" href="#pengumpulan-data" title="Link to this heading">#</a></h2>
+<p>Data spasial untuk proyek terdiri atas citra satelit dan poligon sampel.</p>
+<p>Citra satelit Sentinel-2 Level-2A disediakan dalam bentuk file raster GeoTIFF. File band yang digunakan memiliki nama dengan pola berikut:</p>
+<p><img alt="b8a" src="images/b8a.png" /></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">2026-10-11-00_00_2026-10-11-23_59_Sentinel-2_L2A_B8A_(Raw).tiff</span></code>
+<img alt="b11" src="images/b11.png" /></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2026-10-11-00_00_2026-10-11-23_59_Sentinel-2_L2A_B11_(Raw).tiff</span></code>
+<img alt="b04" src="images/b04.png" /></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2026-10-11-00_00_2026-10-11-23_59_Sentinel-2_L2A_B04_(Raw).tiff</span></code></p></li>
+</ul>
+<p>Paket citra sebelumnya diekstrak dari arsip <code class="docutils literal notranslate"><span class="pre">Browser_images.zip</span></code> ke direktori kerja Google Colab.</p>
+<p>Poligon sampel disimpan dalam <code class="docutils literal notranslate"><span class="pre">polygon.geojson</span></code>, yang digunakan sebagai acuan kelas tutupan lahan.</p>
+</section>
+<section id="file-yang-digunakan">
+<h2>3.2 File yang Digunakan<a class="headerlink" href="#file-yang-digunakan" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>File</p></th>
+<th class="head"><p>Fungsi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Browser_images.zip</span></code></p></td>
+<td><p>Arsip citra satelit yang digunakan dalam pengolahan</p></td>
+</tr>
+<tr class="row-odd"><td><p>File band B04</p></td>
+<td><p>Kanal merah</p></td>
+</tr>
+<tr class="row-even"><td><p>File band B8A</p></td>
+<td><p>Kanal inframerah dekat</p></td>
+</tr>
+<tr class="row-odd"><td><p>File band B11</p></td>
+<td><p>Kanal inframerah gelombang pendek</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">polygon.geojson</span></code></p></td>
+<td><p>Sampel geometri dan label kelas</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hasil_klasifikasi_pamekasan.tif</span></code></p></td>
+<td><p>Hasil akhir klasifikasi raster</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="tujuan-akuisisi-data">
+<h2>3.3 Tujuan Akuisisi Data<a class="headerlink" href="#tujuan-akuisisi-data" title="Link to this heading">#</a></h2>
+<p>Akuisisi data dilakukan untuk memperoleh:</p>
+<ol class="arabic simple">
+<li><p>Informasi reflektansi permukaan dari citra satelit.</p></li>
+<li><p>Data sampel yang memiliki label kelas.</p></li>
+<li><p>Geometri spasial untuk menentukan lokasi sampel.</p></li>
+<li><p>Data yang dapat diolah menjadi fitur numerik bagi model klasifikasi.</p></li>
+</ol>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="data-preparation">
+<h1>4. DATA PREPARATION<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h1>
+<section id="persiapan-lingkungan-pengolahan">
+<h2>4.1 Persiapan Lingkungan Pengolahan<a class="headerlink" href="#persiapan-lingkungan-pengolahan" title="Link to this heading">#</a></h2>
+<p>Pengolahan dilakukan menggunakan Python di Google Colab. Beberapa pustaka yang digunakan adalah:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">numpy</span></code> untuk operasi numerik dan pembentukan fitur.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rasterio</span></code> untuk membaca serta menyimpan raster.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geopandas</span></code> untuk membaca dan mengelola poligon GeoJSON.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> untuk training, testing, dan evaluasi Random Forest.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> untuk visualisasi confusion matrix.</p></li>
+</ul>
+<p>Contoh impor pustaka:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rasterio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">rasterio.features</span><span class="w"> </span><span class="kn">import</span> <span class="n">rasterize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupShuffleSplit</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">accuracy_score</span><span class="p">,</span>
+    <span class="n">classification_report</span><span class="p">,</span>
+    <span class="n">confusion_matrix</span><span class="p">,</span>
+    <span class="n">ConfusionMatrixDisplay</span>
+<span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</pre></div>
+</div>
+</section>
+<section id="membaca-file-band">
+<h2>4.2 Membaca File Band<a class="headerlink" href="#membaca-file-band" title="Link to this heading">#</a></h2>
+<p>Setiap band dibaca sebagai array numerik menggunakan Rasterio. Band B04 juga digunakan untuk memperoleh profil raster, transformasi, dan sistem koordinat yang menjadi acuan penyimpanan hasil.</p>
+<p>Contoh kode pembacaan band:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">b04_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="n">red</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+    <span class="n">profile</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">profile</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">transform</span>
+    <span class="n">crs</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">crs</span>
+
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">b8a_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="n">nir</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">b11_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="n">swir</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;float32&quot;</span><span class="p">)</span>
+
+<span class="k">assert</span> <span class="n">red</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">nir</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">swir</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> \
+    <span class="s2">&quot;Ukuran band berbeda!&quot;</span>
+</pre></div>
+</div>
+<p>Variabel yang terbentuk:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variabel</p></th>
+<th class="head"><p>Isi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">red</span></code></p></td>
+<td><p>Array piksel band B04</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">nir</span></code></p></td>
+<td><p>Array piksel band B8A</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">swir</span></code></p></td>
+<td><p>Array piksel band B11</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">profile</span></code></p></td>
+<td><p>Metadata raster untuk penulisan output</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">transform</span></code></p></td>
+<td><p>Transformasi koordinat raster</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">crs</span></code></p></td>
+<td><p>Sistem koordinat raster</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Pemeriksaan ukuran memastikan ketiga array memiliki bentuk yang sama sebelum digabungkan.</p>
+</section>
+<section id="pembentukan-ndvi">
+<h2>4.3 Pembentukan NDVI<a class="headerlink" href="#pembentukan-ndvi" title="Link to this heading">#</a></h2>
+<p>NDVI atau <em>Normalized Difference Vegetation Index</em> dihitung menggunakan kanal inframerah dekat dan merah.</p>
+<p>Rumus yang digunakan:</p>
+<p>NDVI = (NIR − Red) / (NIR + Red)</p>
+<p>Pada proyek ini, NIR berasal dari B8A dan Red berasal dari B04.</p>
+<p>Kode:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ndvi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span>
+    <span class="n">nir</span> <span class="o">-</span> <span class="n">red</span><span class="p">,</span>
+    <span class="n">nir</span> <span class="o">+</span> <span class="n">red</span><span class="p">,</span>
+    <span class="n">out</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">red</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">),</span>
+    <span class="n">where</span><span class="o">=</span><span class="p">(</span><span class="n">nir</span> <span class="o">+</span> <span class="n">red</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Nilai NDVI dapat membantu membedakan karakteristik vegetasi dari beberapa jenis permukaan lain. Interpretasinya tetap dipengaruhi kondisi tutupan lahan, pencahayaan, dan karakteristik citra.</p>
+</section>
+<section id="pembentukan-ndmi">
+<h2>4.4 Pembentukan NDMI<a class="headerlink" href="#pembentukan-ndmi" title="Link to this heading">#</a></h2>
+<p>NDMI atau <em>Normalized Difference Moisture Index</em> dihitung menggunakan kanal inframerah dekat dan inframerah gelombang pendek.</p>
+<p>Rumus yang digunakan:</p>
+<p>NDMI = (NIR − SWIR) / (NIR + SWIR)</p>
+<p>Kode:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ndmi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span>
+    <span class="n">nir</span> <span class="o">-</span> <span class="n">swir</span><span class="p">,</span>
+    <span class="n">nir</span> <span class="o">+</span> <span class="n">swir</span><span class="p">,</span>
+    <span class="n">out</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">red</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span><span class="p">),</span>
+    <span class="n">where</span><span class="o">=</span><span class="p">(</span><span class="n">nir</span> <span class="o">+</span> <span class="n">swir</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>NDMI digunakan sebagai fitur tambahan untuk membantu membedakan kondisi kelembapan permukaan dan vegetasi.</p>
+</section>
+<section id="penggabungan-fitur">
+<h2>4.5 Penggabungan Fitur<a class="headerlink" href="#penggabungan-fitur" title="Link to this heading">#</a></h2>
+<p>Setelah band dan indeks spektral terbentuk, kelimanya digabungkan menjadi satu array fitur.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">red</span><span class="p">,</span> <span class="n">nir</span><span class="p">,</span> <span class="n">swir</span><span class="p">,</span> <span class="n">ndvi</span><span class="p">,</span> <span class="n">ndmi</span><span class="p">],</span>
+    <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ukuran fitur:&quot;</span><span class="p">,</span> <span class="n">features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah fitur:&quot;</span><span class="p">,</span> <span class="n">features</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Model menggunakan lima fitur:</p>
+<ol class="arabic simple">
+<li><p>B04 atau <code class="docutils literal notranslate"><span class="pre">red</span></code>.</p></li>
+<li><p>B8A atau <code class="docutils literal notranslate"><span class="pre">nir</span></code>.</p></li>
+<li><p>B11 atau <code class="docutils literal notranslate"><span class="pre">swir</span></code>.</p></li>
+<li><p>NDVI.</p></li>
+<li><p>NDMI.</p></li>
+</ol>
+<p>Susunan fitur tersebut dipertahankan ketika melatih model maupun melakukan klasifikasi citra.</p>
+</section>
+<section id="rasterisasi-poligon">
+<h2>4.6 Rasterisasi Poligon<a class="headerlink" href="#rasterisasi-poligon" title="Link to this heading">#</a></h2>
+<p>Poligon GeoJSON digunakan sebagai data referensi untuk menghasilkan label piksel. Setiap kelas diberi kode numerik.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">class_map</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;building&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;farmland&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;water_body&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s2">&quot;forest&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="s2">&quot;mangrove&quot;</span><span class="p">:</span> <span class="mi">5</span>
+<span class="p">}</span>
+
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gdf</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">crs</span><span class="p">)</span>
+<span class="n">gdf</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">class_map</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Geometri dan label kemudian dirasterisasi:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">label_shapes</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">label</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">geom</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+        <span class="n">gdf</span><span class="o">.</span><span class="n">geometry</span><span class="p">,</span>
+        <span class="n">gdf</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">geom</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">geom</span><span class="o">.</span><span class="n">is_empty</span>
+<span class="p">]</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="n">rasterize</span><span class="p">(</span>
+    <span class="n">label_shapes</span><span class="p">,</span>
+    <span class="n">out_shape</span><span class="o">=</span><span class="n">red</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
+    <span class="n">fill</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;uint8&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Piksel bernilai 0 menunjukkan area yang tidak memiliki label kelas pada raster sampel.</p>
+</section>
+<section id="membuat-id-poligon">
+<h2>4.7 Membuat ID Poligon<a class="headerlink" href="#membuat-id-poligon" title="Link to this heading">#</a></h2>
+<p>ID poligon dibuat untuk memastikan pemisahan training dan testing dilakukan berdasarkan poligon, bukan secara acak per piksel.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">id_shapes</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">geom</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">gdf</span><span class="o">.</span><span class="n">geometry</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">geom</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">geom</span><span class="o">.</span><span class="n">is_empty</span>
+<span class="p">]</span>
+
+<span class="n">polygon_ids</span> <span class="o">=</span> <span class="n">rasterize</span><span class="p">(</span>
+    <span class="n">id_shapes</span><span class="p">,</span>
+    <span class="n">out_shape</span><span class="o">=</span><span class="n">red</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+    <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
+    <span class="n">fill</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;int32&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Setiap poligon memiliki ID yang berbeda berdasarkan urutannya dalam GeoDataFrame.</p>
+</section>
+<section id="menyaring-piksel-tidak-valid">
+<h2>4.8 Menyaring Piksel Tidak Valid<a class="headerlink" href="#menyaring-piksel-tidak-valid" title="Link to this heading">#</a></h2>
+<p>Piksel yang tidak mempunyai label, tidak memiliki ID poligon, memiliki nilai band nol, atau memiliki fitur tidak valid dikeluarkan dari dataset.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">valid</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="n">labels</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="o">&amp;</span> <span class="p">(</span><span class="n">polygon_ids</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="o">&amp;</span> <span class="p">(</span><span class="n">red</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="o">&amp;</span> <span class="p">(</span><span class="n">nir</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="o">&amp;</span> <span class="p">(</span><span class="n">swir</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="o">&amp;</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">features</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">features</span><span class="p">[</span><span class="n">valid</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="n">valid</span><span class="p">]</span>
+<span class="n">groups</span> <span class="o">=</span> <span class="n">polygon_ids</span><span class="p">[</span><span class="n">valid</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah sampel:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Variabel <code class="docutils literal notranslate"><span class="pre">X</span></code> berisi fitur numerik, <code class="docutils literal notranslate"><span class="pre">y</span></code> berisi label kelas, dan <code class="docutils literal notranslate"><span class="pre">groups</span></code> berisi ID poligon masing-masing sampel.</p>
+<p>Berdasarkan output proses sebelumnya, jumlah sampel piksel valid adalah 6.196.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="training-dan-testing">
+<h1>5. TRAINING DAN TESTING<a class="headerlink" href="#training-dan-testing" title="Link to this heading">#</a></h1>
+<section id="pembagian-dataset">
+<h2>5.1 Pembagian Dataset<a class="headerlink" href="#pembagian-dataset" title="Link to this heading">#</a></h2>
+<p>Dataset dibagi menggunakan <code class="docutils literal notranslate"><span class="pre">GroupShuffleSplit</span></code> dengan 70% untuk training dan 30% untuk testing.</p>
+<p>Metode ini digunakan agar piksel yang berasal dari poligon yang sama tidak tersebar ke training dan testing sekaligus.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">splitter</span> <span class="o">=</span> <span class="n">GroupShuffleSplit</span><span class="p">(</span>
+    <span class="n">n_splits</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.30</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
+<span class="p">)</span>
+
+<span class="n">split_found</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="k">for</span> <span class="n">train_idx</span><span class="p">,</span> <span class="n">test_idx</span> <span class="ow">in</span> <span class="n">splitter</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
+    <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span>
+<span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">train_idx</span><span class="p">]))</span> <span class="o">==</span> <span class="mi">5</span>
+        <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]))</span> <span class="o">==</span> <span class="mi">5</span>
+    <span class="p">):</span>
+        <span class="n">split_found</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">break</span>
+
+<span class="k">if</span> <span class="ow">not</span> <span class="n">split_found</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+        <span class="s2">&quot;Belum ditemukan pembagian yang memuat &quot;</span>
+        <span class="s2">&quot;kelima kelas di training dan testing.&quot;</span>
+    <span class="p">)</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+<span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">train_idx</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="hasil-pembagian">
+<h2>5.2 Hasil Pembagian<a class="headerlink" href="#hasil-pembagian" title="Link to this heading">#</a></h2>
+<p><img alt="citra2" src="_images/citra2.png" /></p>
+<p>Berdasarkan output yang diperiksa sebelumnya:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Komponen</p></th>
+<th class="head text-right"><p>Jumlah</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Total sampel piksel valid</p></td>
+<td class="text-right"><p>6.196</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sampel training</p></td>
+<td class="text-right"><p>4.489</p></td>
+</tr>
+<tr class="row-even"><td><p>Sampel testing</p></td>
+<td class="text-right"><p>1.707</p></td>
+</tr>
+<tr class="row-odd"><td><p>Poligon training</p></td>
+<td class="text-right"><p>35</p></td>
+</tr>
+<tr class="row-even"><td><p>Poligon testing</p></td>
+<td class="text-right"><p>15</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Pemisahan berdasarkan poligon membantu mengurangi risiko kebocoran data antarpiksel yang bertetangga di dalam poligon yang sama.</p>
+<p>Walaupun demikian, evaluasi ini masih menggunakan 50 poligon awal. Kemampuan model pada lokasi yang jauh berbeda dari lokasi sampel tetap perlu diuji lebih lanjut.</p>
+</section>
+<section id="pemeriksaan-jumlah-poligon">
+<h2>5.3 Pemeriksaan Jumlah Poligon<a class="headerlink" href="#pemeriksaan-jumlah-poligon" title="Link to this heading">#</a></h2>
+<p>Jumlah poligon dapat diperiksa menggunakan:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">train_groups</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="n">train_idx</span><span class="p">]</span>
+<span class="n">test_groups</span> <span class="o">=</span> <span class="n">groups</span><span class="p">[</span><span class="n">test_idx</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Jumlah poligon training:&quot;</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">train_groups</span><span class="p">))</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Jumlah poligon testing:&quot;</span><span class="p">,</span>
+    <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">test_groups</span><span class="p">))</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Pemeriksaan per kelas:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">nama</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">class_map</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">ids_train</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span>
+        <span class="n">train_groups</span><span class="p">[</span><span class="n">y_train</span> <span class="o">==</span> <span class="n">label</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">ids_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span>
+        <span class="n">test_groups</span><span class="p">[</span><span class="n">y_test</span> <span class="o">==</span> <span class="n">label</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="n">nama</span><span class="p">,</span>
+        <span class="s2">&quot;training:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ids_train</span><span class="p">),</span>
+        <span class="s2">&quot;testing:&quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ids_test</span><span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Berdasarkan hasil yang ditampilkan sebelumnya, setiap kelas terwakili dalam training dan testing. Namun, jumlah poligon per kelas pada bagian testing masih relatif kecil, sehingga hasil evaluasi per kelas perlu ditafsirkan secara hati-hati.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="modeling-random-forest">
+<h1>6. MODELING: RANDOM FOREST<a class="headerlink" href="#modeling-random-forest" title="Link to this heading">#</a></h1>
+<section id="pemilihan-algoritma">
+<h2>6.1 Pemilihan Algoritma<a class="headerlink" href="#pemilihan-algoritma" title="Link to this heading">#</a></h2>
+<p>Random Forest merupakan algoritma pembelajaran mesin yang menggunakan sejumlah pohon keputusan untuk menghasilkan prediksi. Penggabungan prediksi dari banyak pohon dapat membantu model mengenali hubungan nonlinier antara fitur masukan dan kelas target.</p>
+<p>Dalam proyek ini, Random Forest digunakan untuk mengklasifikasikan piksel citra ke dalam lima kelas tutupan lahan.</p>
+</section>
+<section id="konfigurasi-model">
+<h2>6.2 Konfigurasi Model<a class="headerlink" href="#konfigurasi-model" title="Link to this heading">#</a></h2>
+<p>Model menggunakan konfigurasi berikut:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Nilai</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">n_estimators</span></code></p></td>
+<td><p>200</p></td>
+<td><p>Jumlah pohon keputusan</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">class_weight</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">balanced</span></code></p></td>
+<td><p>Penyesuaian bobot berdasarkan frekuensi kelas</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">random_state</span></code></p></td>
+<td><p>42</p></td>
+<td><p>Menjaga hasil eksperimen lebih konsisten</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">n_jobs</span></code></p></td>
+<td><p>-1</p></td>
+<td><p>Memanfaatkan seluruh prosesor yang tersedia</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="proses-training">
+<h2>6.3 Proses Training<a class="headerlink" href="#proses-training" title="Link to this heading">#</a></h2>
+<p>Kode pelatihan model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">class_weight</span><span class="o">=</span><span class="s2">&quot;balanced&quot;</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Pada tahap ini, model mempelajari hubungan antara lima fitur spektral dan label tutupan lahan dari data training.</p>
+</section>
+<section id="proses-testing">
+<h2>6.4 Proses Testing<a class="headerlink" href="#proses-testing" title="Link to this heading">#</a></h2>
+<p>Setelah pelatihan, model digunakan untuk memprediksi data testing.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;Accuracy:&quot;</span><span class="p">,</span>
+    <span class="nb">round</span><span class="p">(</span>
+        <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">),</span>
+        <span class="mi">4</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Prediksi dibandingkan dengan label sebenarnya untuk menghitung metrik evaluasi.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="evaluation">
+<h1>7. EVALUATION<a class="headerlink" href="#evaluation" title="Link to this heading">#</a></h1>
+<section id="metrik-evaluasi">
+<h2>7.1 Metrik Evaluasi<a class="headerlink" href="#metrik-evaluasi" title="Link to this heading">#</a></h2>
+<p>Evaluasi dilakukan menggunakan beberapa metrik:</p>
+<ul class="simple">
+<li><p><strong>Accuracy:</strong> proporsi seluruh sampel testing yang diprediksi dengan benar.</p></li>
+<li><p><strong>Precision:</strong> proporsi prediksi suatu kelas yang benar-benar termasuk kelas tersebut.</p></li>
+<li><p><strong>Recall:</strong> proporsi sampel suatu kelas yang berhasil ditemukan oleh model.</p></li>
+<li><p><strong>F1-score:</strong> rata-rata harmonik precision dan recall.</p></li>
+<li><p><strong>Confusion matrix:</strong> tabel perbandingan antara label sebenarnya dan hasil prediksi.</p></li>
+</ul>
+</section>
+<section id="hasil-akurasi">
+<h2>7.2 Hasil Akurasi<a class="headerlink" href="#hasil-akurasi" title="Link to this heading">#</a></h2>
+<p>Berdasarkan output Google Colab yang diperiksa:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metrik</p></th>
+<th class="head text-right"><p>Hasil</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sampel testing</p></td>
+<td class="text-right"><p>1.707</p></td>
+</tr>
+<tr class="row-odd"><td><p>Prediksi benar</p></td>
+<td class="text-right"><p>1.371</p></td>
+</tr>
+<tr class="row-even"><td><p>Accuracy</p></td>
+<td class="text-right"><p>80,32%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Nilai accuracy sebesar 80,32% menunjukkan bahwa sekitar 80% sampel piksel testing diprediksi dengan benar pada pembagian data tersebut.</p>
+<p>Nilai ini menggambarkan kinerja model pada data testing yang digunakan. Nilai tersebut tidak berarti bahwa 80,32% dari seluruh permukaan Kabupaten Pamekasan pasti terklasifikasi benar.</p>
+</section>
+<section id="classification-report">
+<h2>7.3 Classification Report<a class="headerlink" href="#classification-report" title="Link to this heading">#</a></h2>
+<p>Berikut ringkasan hasil yang ditampilkan pada output sebelumnya.</p>
+<p><img alt="citra3" src="_images/citra3.png" /></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head text-right"><p>Precision</p></th>
+<th class="head text-right"><p>Recall</p></th>
+<th class="head text-right"><p>F1-score</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Building</p></td>
+<td class="text-right"><p>0,22</p></td>
+<td class="text-right"><p>0,81</p></td>
+<td class="text-right"><p>0,35</p></td>
+</tr>
+<tr class="row-odd"><td><p>Farmland</p></td>
+<td class="text-right"><p>0,91</p></td>
+<td class="text-right"><p>0,71</p></td>
+<td class="text-right"><p>0,80</p></td>
+</tr>
+<tr class="row-even"><td><p>Water body</p></td>
+<td class="text-right"><p>0,67</p></td>
+<td class="text-right"><p>0,43</p></td>
+<td class="text-right"><p>0,52</p></td>
+</tr>
+<tr class="row-odd"><td><p>Forest</p></td>
+<td class="text-right"><p>0,87</p></td>
+<td class="text-right"><p>0,90</p></td>
+<td class="text-right"><p>0,88</p></td>
+</tr>
+<tr class="row-even"><td><p>Mangrove</p></td>
+<td class="text-right"><p>0,99</p></td>
+<td class="text-right"><p>0,99</p></td>
+<td class="text-right"><p>0,99</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="interpretasi">
+<h3>Interpretasi<a class="headerlink" href="#interpretasi" title="Link to this heading">#</a></h3>
+<p><strong>Building</strong>
+Precision yang rendah menunjukkan bahwa banyak piksel yang diprediksi sebagai bangunan ternyata berasal dari kelas lain. Model perlu diperbaiki untuk membedakan karakteristik bangunan dengan kelas seperti lahan pertanian.</p>
+<p><strong>Farmland</strong>
+Model memiliki precision yang tinggi, tetapi recall lebih rendah. Artinya, prediksi yang diberi label farmland relatif sering benar, tetapi sebagian sampel farmland masih diprediksi sebagai kelas lain.</p>
+<p><strong>Water body</strong>
+Recall yang rendah menunjukkan bahwa sebagian sampel perairan belum berhasil dikenali. Kelas ini perlu mendapatkan perhatian, termasuk pemeriksaan kualitas label dan penambahan sampel perairan yang mewakili kondisi berbeda.</p>
+<p><strong>Forest</strong>
+Precision dan recall menunjukkan hasil yang relatif seimbang pada data testing yang digunakan. Namun, hasil ini masih perlu diuji dengan sampel tambahan dari lokasi berbeda.</p>
+<p><strong>Mangrove</strong>
+Precision dan recall yang tinggi menunjukkan bahwa model berhasil mengenali sampel mangrove pada pembagian testing tersebut. Hasil yang sangat tinggi perlu diperiksa lebih lanjut dengan sampel yang lebih beragam untuk memastikan bahwa model tidak hanya mengenali karakteristik lokasi sampel tertentu.</p>
+</section>
+</section>
+<section id="confusion-matrix">
+<h2>7.4 Confusion Matrix<a class="headerlink" href="#confusion-matrix" title="Link to this heading">#</a></h2>
+<p>Confusion matrix dibuat dengan kode berikut:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ConfusionMatrixDisplay</span><span class="o">.</span><span class="n">from_predictions</span><span class="p">(</span>
+    <span class="n">y_test</span><span class="p">,</span>
+    <span class="n">y_pred</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="n">display_labels</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;Building&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Farmland&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Water body&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Forest&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Mangrove&quot;</span>
+    <span class="p">],</span>
+    <span class="n">xticks_rotation</span><span class="o">=</span><span class="mi">45</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Matriks ini menampilkan jumlah sampel setiap kelas yang diprediksi dengan benar maupun salah.</p>
+<p>Berdasarkan output yang sebelumnya diperiksa:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas sebenarnya</p></th>
+<th class="head text-right"><p>Prediksi benar</p></th>
+<th class="head text-right"><p>Total sampel testing</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Building</p></td>
+<td class="text-right"><p>58</p></td>
+<td class="text-right"><p>72</p></td>
+</tr>
+<tr class="row-odd"><td><p>Farmland</p></td>
+<td class="text-right"><p>660</p></td>
+<td class="text-right"><p>924</p></td>
+</tr>
+<tr class="row-even"><td><p>Water body</p></td>
+<td class="text-right"><p>6</p></td>
+<td class="text-right"><p>14</p></td>
+</tr>
+<tr class="row-odd"><td><p>Forest</p></td>
+<td class="text-right"><p>413</p></td>
+<td class="text-right"><p>461</p></td>
+</tr>
+<tr class="row-even"><td><p>Mangrove</p></td>
+<td class="text-right"><p>234</p></td>
+<td class="text-right"><p>236</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Total</strong></p></td>
+<td class="text-right"><p><strong>1.371</strong></p></td>
+<td class="text-right"><p><strong>1.707</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Angka pada diagonal menunjukkan prediksi yang benar. Nilai di luar diagonal menunjukkan kelas tujuan ketika sampel sebenarnya salah diklasifikasikan.</p>
+</section>
+<section id="kesimpulan-evaluasi">
+<h2>7.5 Kesimpulan Evaluasi<a class="headerlink" href="#kesimpulan-evaluasi" title="Link to this heading">#</a></h2>
+<p>Model Random Forest berhasil melakukan klasifikasi pada lima kelas tutupan lahan dengan accuracy pengujian sebesar 80,32%.</p>
+<p>Namun, hasil evaluasi memperlihatkan bahwa kemampuan model belum merata pada seluruh kelas. Building memiliki precision yang rendah, sedangkan water body memiliki recall yang rendah.</p>
+<p>Perbaikan dapat dilakukan dengan memeriksa label poligon, menambah variasi sampel, meninjau karakteristik spektral setiap kelas, dan menguji model pada area yang berbeda. Dengan demikian, hasil evaluasi dapat menjadi dasar untuk meningkatkan kualitas model sebelum digunakan untuk analisis yang lebih luas.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="klasifikasi-seluruh-citra">
+<h1>8. KLASIFIKASI SELURUH CITRA<a class="headerlink" href="#klasifikasi-seluruh-citra" title="Link to this heading">#</a></h1>
+<section id="tujuan-klasifikasi">
+<h2>8.1 Tujuan Klasifikasi<a class="headerlink" href="#tujuan-klasifikasi" title="Link to this heading">#</a></h2>
+<p>Setelah model dilatih dan dievaluasi, model diterapkan pada seluruh piksel citra yang memenuhi kriteria validitas.</p>
+<p>Tujuannya adalah menghasilkan peta yang memberikan kode kelas pada piksel-piksel citra, bukan hanya pada area sampel training dan testing.</p>
+</section>
+<section id="menentukan-piksel-valid">
+<h2>8.2 Menentukan Piksel Valid<a class="headerlink" href="#menentukan-piksel-valid" title="Link to this heading">#</a></h2>
+<p>Kode yang digunakan:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classified</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
+    <span class="n">red</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;uint8&quot;</span>
+<span class="p">)</span>
+
+<span class="n">valid_image</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="p">(</span><span class="n">red</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="o">&amp;</span> <span class="p">(</span><span class="n">nir</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="o">&amp;</span> <span class="p">(</span><span class="n">swir</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="o">&amp;</span> <span class="n">np</span><span class="o">.</span><span class="n">isfinite</span><span class="p">(</span><span class="n">features</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Array <code class="docutils literal notranslate"><span class="pre">classified</span></code> diinisialisasi dengan nilai 0. Nilai tersebut digunakan untuk piksel yang tidak diklasifikasikan.</p>
+</section>
+<section id="menerapkan-model">
+<h2>8.3 Menerapkan Model<a class="headerlink" href="#menerapkan-model" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">classified</span><span class="p">[</span><span class="n">valid_image</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+    <span class="n">features</span><span class="p">[</span><span class="n">valid_image</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Model memprediksi kelas untuk setiap piksel valid. Hasil prediksi dimasukkan ke array <code class="docutils literal notranslate"><span class="pre">classified</span></code>.</p>
+</section>
+<section id="menyimpan-hasil-dalam-geotiff">
+<h2>8.4 Menyimpan Hasil dalam GeoTIFF<a class="headerlink" href="#menyimpan-hasil-dalam-geotiff" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">output_tif</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;/content/hasil_klasifikasi_pamekasan.tif&quot;</span>
+<span class="p">)</span>
+
+<span class="n">profile</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+    <span class="n">driver</span><span class="o">=</span><span class="s2">&quot;GTiff&quot;</span><span class="p">,</span>
+    <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="s2">&quot;uint8&quot;</span><span class="p">,</span>
+    <span class="n">nodata</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">compress</span><span class="o">=</span><span class="s2">&quot;lzw&quot;</span>
+<span class="p">)</span>
+
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span>
+    <span class="n">output_tif</span><span class="p">,</span>
+    <span class="s2">&quot;w&quot;</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">profile</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">dst</span><span class="p">:</span>
+    <span class="n">dst</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">classified</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hasil tersimpan:&quot;</span><span class="p">,</span> <span class="n">output_tif</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Hasil klasifikasi disimpan ke:</p>
+<p><code class="docutils literal notranslate"><span class="pre">/content/hasil_klasifikasi_pamekasan.tif</span></code></p>
+<p>File ini merupakan raster satu band dengan nilai piksel berupa kode kelas. Metadata spasial mengikuti profil raster sumber yang diperbarui untuk penyimpanan hasil.</p>
+</section>
+<section id="menampilkan-file-hasil-klasifikasi">
+<h2>8.5 Menampilkan File Hasil Klasifikasi<a class="headerlink" href="#menampilkan-file-hasil-klasifikasi" title="Link to this heading">#</a></h2>
+<p>Untuk memeriksa apakah file berhasil dibuat:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="n">output_tif</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;/content/hasil_klasifikasi_pamekasan.tif&quot;</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File tersedia:&quot;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">output_tif</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">output_tif</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">&quot;Ukuran file:&quot;</span><span class="p">,</span>
+        <span class="nb">round</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">output_tif</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="s2">&quot;KB&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Untuk memeriksa ukuran raster dan sistem koordinat:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">output_tif</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ukuran raster:&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah band:&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CRS:&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;NoData:&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">nodata</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tipe data:&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">dtypes</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Pemeriksaan ini membantu memastikan bahwa file hasil klasifikasi dapat dibaca dan memiliki metadata yang diperlukan untuk visualisasi spasial.</p>
+</section>
+<section id="ringkasan-nilai-piksel">
+<h2>8.6 Ringkasan Nilai Piksel<a class="headerlink" href="#ringkasan-nilai-piksel" title="Link to this heading">#</a></h2>
+<p>Berdasarkan pemeriksaan file sebelumnya, distribusi kode kelas yang tercatat adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>Kode</p></th>
+<th class="head"><p>Kelas</p></th>
+<th class="head text-right"><p>Jumlah piksel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>1</p></td>
+<td><p>Building</p></td>
+<td class="text-right"><p>654</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>2</p></td>
+<td><p>Farmland</p></td>
+<td class="text-right"><p>2.992</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>3</p></td>
+<td><p>Water body</p></td>
+<td class="text-right"><p>356</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>4</p></td>
+<td><p>Forest</p></td>
+<td class="text-right"><p>1.220</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>5</p></td>
+<td><p>Mangrove</p></td>
+<td class="text-right"><p>2.306</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Terdapat pula piksel bernilai 0 untuk NoData atau area tanpa klasifikasi.</p>
+<p>Angka tersebut merupakan jumlah piksel berdasarkan nilai kelas pada raster, bukan luas lahan dalam satuan hektare. Penghitungan luas memerlukan pertimbangan resolusi citra dan sistem koordinat yang sesuai.</p>
+</section>
+<section id="mengunduh-file-geotiff-dari-google-colab">
+<h2>8.7 Mengunduh File GeoTIFF dari Google Colab<a class="headerlink" href="#mengunduh-file-geotiff-dari-google-colab" title="Link to this heading">#</a></h2>
+<p>File hasil klasifikasi dapat diunduh dari Google Colab menggunakan:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">google.colab</span><span class="w"> </span><span class="kn">import</span> <span class="n">files</span>
+
+<span class="n">files</span><span class="o">.</span><span class="n">download</span><span class="p">(</span>
+    <span class="s2">&quot;/content/hasil_klasifikasi_pamekasan.tif&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>File yang diunduh dapat disimpan sebagai arsip hasil pengolahan dan digunakan kembali pada tahap visualisasi.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="visualisasi-peta-tutupan-lahan">
+<h1>9. VISUALISASI PETA TUTUPAN LAHAN<a class="headerlink" href="#visualisasi-peta-tutupan-lahan" title="Link to this heading">#</a></h1>
+<section id="tujuan-visualisasi">
+<h2>9.1 Tujuan Visualisasi<a class="headerlink" href="#tujuan-visualisasi" title="Link to this heading">#</a></h2>
+<p>Visualisasi dilakukan untuk menyajikan hasil klasifikasi dalam bentuk peta yang mudah dipahami. Raster hasil klasifikasi ditampilkan di atas basemap citra satelit sehingga pengguna dapat membandingkan kelas hasil prediksi dengan kondisi permukaan yang terlihat pada citra.</p>
+<p>Visualisasi dibuat menggunakan Leaflet melalui Folium, kemudian diintegrasikan ke aplikasi Streamlit.
+<img alt="citra1" src="_images/citra4.png" /></p>
+</section>
+<section id="layer-klasifikasi">
+<h2>9.2 Layer Klasifikasi<a class="headerlink" href="#layer-klasifikasi" title="Link to this heading">#</a></h2>
+<p>Layer klasifikasi menampilkan lima kelas:</p>
+<ul class="simple">
+<li><p>Building.</p></li>
+<li><p>Farmland.</p></li>
+<li><p>Water body.</p></li>
+<li><p>Forest.</p></li>
+<li><p>Mangrove.</p></li>
+</ul>
+<p>Setiap kelas diwakili warna yang berbeda. Penggunaan warna membantu pengguna membedakan kategori tutupan lahan pada peta.</p>
+</section>
+<section id="layer-poligon-geojson">
+<h2>9.3 Layer Poligon GeoJSON<a class="headerlink" href="#layer-poligon-geojson" title="Link to this heading">#</a></h2>
+<p>Selain raster hasil klasifikasi, poligon sampel ditampilkan sebagai layer terpisah. Poligon ini menunjukkan lokasi sampel yang digunakan dalam pengembangan model.</p>
+<p>Layer sampel membantu pengguna memahami bahwa model dibangun berdasarkan area referensi yang telah diberi label.</p>
+</section>
+<section id="kontrol-layer-leaflet">
+<h2>9.4 Kontrol Layer Leaflet<a class="headerlink" href="#kontrol-layer-leaflet" title="Link to this heading">#</a></h2>
+<p>Kontrol layer disediakan agar pengguna dapat menampilkan atau menyembunyikan layer tertentu. Pada aplikasi yang dibuat, pengguna juga dapat memilih kelas melalui filter.</p>
+</section>
+<section id="contoh-kode-visualisasi-raster-hasil-klasifikasi">
+<h2>9.5 Contoh Kode Visualisasi Raster Hasil Klasifikasi<a class="headerlink" href="#contoh-kode-visualisasi-raster-hasil-klasifikasi" title="Link to this heading">#</a></h2>
+<p>Potongan berikut merupakan contoh untuk menampilkan raster hasil klasifikasi di Google Colab. Gunakan screenshot output dari notebook sebagai bukti hasil.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">rasterio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">ListedColormap</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Patch</span>
+
+<span class="n">output_tif</span> <span class="o">=</span> <span class="s2">&quot;/content/hasil_klasifikasi_pamekasan.tif&quot;</span>
+
+<span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">output_tif</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+    <span class="n">hasil</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ukuran raster:&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CRS:&quot;</span><span class="p">,</span> <span class="n">src</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+
+<span class="n">warna</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">([</span>
+    <span class="s2">&quot;#d73027&quot;</span><span class="p">,</span>  <span class="c1"># Building</span>
+    <span class="s2">&quot;#fdae61&quot;</span><span class="p">,</span>  <span class="c1"># Farmland</span>
+    <span class="s2">&quot;#4575b4&quot;</span><span class="p">,</span>  <span class="c1"># Water body</span>
+    <span class="s2">&quot;#1a9850&quot;</span><span class="p">,</span>  <span class="c1"># Forest</span>
+    <span class="s2">&quot;#66c2a5&quot;</span>   <span class="c1"># Mangrove</span>
+<span class="p">])</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_equal</span><span class="p">(</span><span class="n">hasil</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="n">warna</span><span class="p">,</span>
+    <span class="n">vmin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;nearest&quot;</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="p">[</span>
+    <span class="n">Patch</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;#d73027&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Building&quot;</span><span class="p">),</span>
+    <span class="n">Patch</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;#fdae61&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Farmland&quot;</span><span class="p">),</span>
+    <span class="n">Patch</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;#4575b4&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Water body&quot;</span><span class="p">),</span>
+    <span class="n">Patch</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;#1a9850&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Forest&quot;</span><span class="p">),</span>
+    <span class="n">Patch</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s2">&quot;#66c2a5&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Mangrove&quot;</span><span class="p">)</span>
+<span class="p">],</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper right&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Klasifikasi Tutupan Lahan - Pamekasan&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="implementasi-aplikasi-streamlit">
+<h1>10. IMPLEMENTASI APLIKASI STREAMLIT<a class="headerlink" href="#implementasi-aplikasi-streamlit" title="Link to this heading">#</a></h1>
+<section id="tujuan-aplikasi">
+<h2>10.1 Tujuan Aplikasi<a class="headerlink" href="#tujuan-aplikasi" title="Link to this heading">#</a></h2>
+<p>Aplikasi Streamlit dibuat untuk menyajikan hasil klasifikasi dalam bentuk peta interaktif yang dapat diakses melalui browser.</p>
+<p>Aplikasi menggabungkan raster hasil klasifikasi, poligon sampel, basemap, legenda, dan kontrol filter kelas dalam satu antarmuka.</p>
+</section>
+<section id="komponen-aplikasi">
+<h2>10.2 Komponen Aplikasi<a class="headerlink" href="#komponen-aplikasi" title="Link to this heading">#</a></h2>
+<p>Komponen utama aplikasi meliputi:</p>
+<ol class="arabic simple">
+<li><p>Judul aplikasi klasifikasi tutupan lahan.</p></li>
+<li><p>Peta dasar citra satelit.</p></li>
+<li><p>Overlay hasil klasifikasi.</p></li>
+<li><p>Layer poligon GeoJSON.</p></li>
+<li><p>Legenda kelas.</p></li>
+<li><p>Kontrol layer dan filter kelas.</p></li>
+<li><p>Navigasi peta berupa zoom dan pergeseran.</p></li>
+</ol>
+</section>
+<section id="file-yang-diperlukan">
+<h2>10.3 File yang Diperlukan<a class="headerlink" href="#file-yang-diperlukan" title="Link to this heading">#</a></h2>
+<p>Aplikasi menggunakan file utama dan data pendukung berikut:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>File</p></th>
+<th class="head"><p>Fungsi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">app.py</span></code></p></td>
+<td><p>Kode utama aplikasi Streamlit</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code></p></td>
+<td><p>Daftar pustaka Python</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hasil_klasifikasi_pamekasan.tif</span></code></p></td>
+<td><p>Raster hasil klasifikasi</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">polygon.geojson</span></code></p></td>
+<td><p>Poligon sampel tutupan lahan</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Contoh isi <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>streamlit
+rasterio
+geopandas
+numpy
+folium
+matplotlib
+streamlit-folium
+</pre></div>
+</div>
+</section>
+<section id="struktur-kode-streamlit">
+<h2>10.4 Struktur Kode Streamlit<a class="headerlink" href="#struktur-kode-streamlit" title="Link to this heading">#</a></h2>
+<p>Kode di bawah ini cuntuk menunjukkan pola pemuatan data dan filter kelas.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">streamlit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">st</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">rasterio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">geopandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gpd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">folium</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">folium.raster_layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">ImageOverlay</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">streamlit_folium</span><span class="w"> </span><span class="kn">import</span> <span class="n">st_folium</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.colors</span><span class="w"> </span><span class="kn">import</span> <span class="n">to_rgb</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">rasterio.warp</span><span class="w"> </span><span class="kn">import</span> <span class="n">transform_bounds</span>
+
+<span class="n">st</span><span class="o">.</span><span class="n">set_page_config</span><span class="p">(</span>
+    <span class="n">page_title</span><span class="o">=</span><span class="s2">&quot;Klasifikasi Tutupan Lahan Pamekasan&quot;</span><span class="p">,</span>
+    <span class="n">page_icon</span><span class="o">=</span><span class="s2">&quot;🌍&quot;</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="s2">&quot;wide&quot;</span>
+<span class="p">)</span>
+
+<span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Klasifikasi Tutupan Lahan Pamekasan&quot;</span><span class="p">)</span>
+<span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span>
+    <span class="s2">&quot;Pemetaan tutupan lahan menggunakan citra Sentinel-2 &quot;</span>
+    <span class="s2">&quot;dan algoritma Random Forest.&quot;</span>
+<span class="p">)</span>
+
+<span class="n">RASTER_PATH</span> <span class="o">=</span> <span class="s2">&quot;hasil_klasifikasi_pamekasan.tif&quot;</span>
+<span class="n">GEOJSON_PATH</span> <span class="o">=</span> <span class="s2">&quot;polygon.geojson&quot;</span>
+
+<span class="n">KELAS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;building&quot;</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;farmland&quot;</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;water_body&quot;</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="s2">&quot;forest&quot;</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="s2">&quot;mangrove&quot;</span>
+<span class="p">}</span>
+
+<span class="n">WARNA</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;#d73027&quot;</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;#fdae61&quot;</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;#4575b4&quot;</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">:</span> <span class="s2">&quot;#1a9850&quot;</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="s2">&quot;#66c2a5&quot;</span>
+<span class="p">}</span>
+
+<span class="nd">@st</span><span class="o">.</span><span class="n">cache_data</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">baca_raster</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">as</span> <span class="n">src</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">batas</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">bounds</span>
+        <span class="n">crs</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">crs</span>
+        <span class="n">transformasi</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">transform</span>
+        <span class="n">nodata</span> <span class="o">=</span> <span class="n">src</span><span class="o">.</span><span class="n">nodata</span>
+
+    <span class="k">if</span> <span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;CRS raster tidak ditemukan.&quot;</span><span class="p">)</span>
+
+    <span class="n">batas_geo</span> <span class="o">=</span> <span class="n">transform_bounds</span><span class="p">(</span>
+        <span class="n">crs</span><span class="p">,</span>
+        <span class="s2">&quot;EPSG:4326&quot;</span><span class="p">,</span>
+        <span class="n">batas</span><span class="o">.</span><span class="n">left</span><span class="p">,</span>
+        <span class="n">batas</span><span class="o">.</span><span class="n">bottom</span><span class="p">,</span>
+        <span class="n">batas</span><span class="o">.</span><span class="n">right</span><span class="p">,</span>
+        <span class="n">batas</span><span class="o">.</span><span class="n">top</span>
+    <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span><span class="p">,</span> <span class="n">batas_geo</span><span class="p">,</span> <span class="n">nodata</span>
+
+
+<span class="nd">@st</span><span class="o">.</span><span class="n">cache_data</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">baca_geojson</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">crs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;CRS GeoJSON tidak ditemukan. &quot;</span>
+            <span class="s2">&quot;Pastikan file GeoJSON memiliki informasi CRS.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="s2">&quot;EPSG:4326&quot;</span><span class="p">)</span>
+
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">hasil</span><span class="p">,</span> <span class="n">batas_geo</span><span class="p">,</span> <span class="n">nodata</span> <span class="o">=</span> <span class="n">baca_raster</span><span class="p">(</span><span class="n">RASTER_PATH</span><span class="p">)</span>
+    <span class="n">poligon</span> <span class="o">=</span> <span class="n">baca_geojson</span><span class="p">(</span><span class="n">GEOJSON_PATH</span><span class="p">)</span>
+
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Data belum berhasil dibaca.&quot;</span><span class="p">)</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">code</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
+        <span class="s2">&quot;Pastikan app.py, file GeoTIFF, dan polygon.geojson &quot;</span>
+        <span class="s2">&quot;berada di folder proyek yang sama.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">st</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+
+<span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s2">&quot;Pilih Kelas Tutupan Lahan&quot;</span><span class="p">)</span>
+
+<span class="n">pilihan</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">multiselect</span><span class="p">(</span>
+    <span class="s2">&quot;Pilih kelas yang ingin ditampilkan pada peta:&quot;</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">KELAS</span><span class="o">.</span><span class="n">values</span><span class="p">()),</span>
+    <span class="n">default</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">KELAS</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+<span class="p">)</span>
+
+
+<span class="n">rgba</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">hasil</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">hasil</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">4</span><span class="p">),</span>
+    <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span>
+<span class="p">)</span>
+
+<span class="k">for</span> <span class="n">kode</span><span class="p">,</span> <span class="n">nama</span> <span class="ow">in</span> <span class="n">KELAS</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">nama</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">pilihan</span><span class="p">:</span>
+        <span class="k">continue</span>
+
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">hasil</span> <span class="o">==</span> <span class="n">kode</span>
+    <span class="n">rgb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">to_rgb</span><span class="p">(</span><span class="n">WARNA</span><span class="p">[</span><span class="n">kode</span><span class="p">]))</span> <span class="o">*</span> <span class="mi">255</span>
+
+    <span class="n">rgba</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rgb</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">rgba</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rgb</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">rgba</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">rgb</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">rgba</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">180</span>
+
+<span class="k">if</span> <span class="n">nodata</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">rgba</span><span class="p">[</span><span class="n">hasil</span> <span class="o">==</span> <span class="n">nodata</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">left</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">top</span> <span class="o">=</span> <span class="n">batas_geo</span>
+
+<span class="n">tengah</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="n">bottom</span> <span class="o">+</span> <span class="n">top</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="p">]</span>
+
+<span class="n">peta</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span>
+    <span class="n">location</span><span class="o">=</span><span class="n">tengah</span><span class="p">,</span>
+    <span class="n">zoom_start</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+    <span class="n">tiles</span><span class="o">=</span><span class="s2">&quot;OpenStreetMap&quot;</span><span class="p">,</span>
+    <span class="n">control_scale</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Layer citra satelit.</span>
+<span class="n">folium</span><span class="o">.</span><span class="n">TileLayer</span><span class="p">(</span>
+    <span class="n">tiles</span><span class="o">=</span><span class="p">(</span>
+        <span class="s2">&quot;https://server.arcgisonline.com/ArcGIS/rest/services/&quot;</span>
+        <span class="s2">&quot;World_Imagery/MapServer/tile/</span><span class="si">{z}</span><span class="s2">/</span><span class="si">{y}</span><span class="s2">/</span><span class="si">{x}</span><span class="s2">&quot;</span>
+    <span class="p">),</span>
+    <span class="n">attr</span><span class="o">=</span><span class="s2">&quot;Tiles © Esri&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Citra Satelit&quot;</span><span class="p">,</span>
+    <span class="n">overlay</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">control</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">peta</span><span class="p">)</span>
+
+<span class="c1"># Layer hasil klasifikasi.</span>
+<span class="n">ImageOverlay</span><span class="p">(</span>
+    <span class="n">image</span><span class="o">=</span><span class="n">rgba</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="o">=</span><span class="p">[[</span><span class="n">bottom</span><span class="p">,</span> <span class="n">left</span><span class="p">],</span> <span class="p">[</span><span class="n">top</span><span class="p">,</span> <span class="n">right</span><span class="p">]],</span>
+    <span class="n">opacity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Hasil Klasifikasi&quot;</span><span class="p">,</span>
+    <span class="n">interactive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">cross_origin</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">zindex</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">peta</span><span class="p">)</span>
+
+<span class="n">kolom_kelas</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">for</span> <span class="n">nama_kolom</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;kelas&quot;</span><span class="p">,</span> <span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">,</span> <span class="s2">&quot;Class&quot;</span><span class="p">,</span> <span class="s2">&quot;Kelas&quot;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">nama_kolom</span> <span class="ow">in</span> <span class="n">poligon</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">kolom_kelas</span> <span class="o">=</span> <span class="n">nama_kolom</span>
+        <span class="k">break</span>
+
+<span class="k">if</span> <span class="n">kolom_kelas</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">poligon_tampil</span> <span class="o">=</span> <span class="n">poligon</span><span class="p">[</span>
+        <span class="n">poligon</span><span class="p">[</span><span class="n">kolom_kelas</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">pilihan</span><span class="p">)</span>
+    <span class="p">]</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">poligon_tampil</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+        <span class="n">folium</span><span class="o">.</span><span class="n">GeoJson</span><span class="p">(</span>
+            <span class="n">poligon_tampil</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Poligon Sampel&quot;</span><span class="p">,</span>
+            <span class="n">tooltip</span><span class="o">=</span><span class="n">folium</span><span class="o">.</span><span class="n">GeoJsonTooltip</span><span class="p">(</span>
+                <span class="n">fields</span><span class="o">=</span><span class="p">[</span><span class="n">kolom_kelas</span><span class="p">],</span>
+                <span class="n">aliases</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Kelas:&quot;</span><span class="p">]</span>
+            <span class="p">),</span>
+            <span class="n">style_function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">feature</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;weight&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="s2">&quot;fillOpacity&quot;</span><span class="p">:</span> <span class="mf">0.08</span>
+            <span class="p">}</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">peta</span><span class="p">)</span>
+
+<span class="n">folium</span><span class="o">.</span><span class="n">LayerControl</span><span class="p">(</span><span class="n">collapsed</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">add_to</span><span class="p">(</span><span class="n">peta</span><span class="p">)</span>
+
+<span class="n">peta</span><span class="o">.</span><span class="n">fit_bounds</span><span class="p">([</span>
+    <span class="p">[</span><span class="n">bottom</span><span class="p">,</span> <span class="n">left</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">top</span><span class="p">,</span> <span class="n">right</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s2">&quot;Peta Interaktif&quot;</span><span class="p">)</span>
+
+<span class="n">st_folium</span><span class="p">(</span>
+    <span class="n">peta</span><span class="p">,</span>
+    <span class="n">key</span><span class="o">=</span><span class="s2">&quot;peta_pamekasan&quot;</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span>
+    <span class="n">use_container_width</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">returned_objects</span><span class="o">=</span><span class="p">[]</span>
+<span class="p">)</span>
+
+<span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s2">&quot;Legenda Kelas&quot;</span><span class="p">)</span>
+
+<span class="n">kolom</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">columns</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">kode</span><span class="p">,</span> <span class="n">nama</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">KELAS</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+    <span class="k">if</span> <span class="n">nama</span> <span class="ow">in</span> <span class="n">pilihan</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">kolom</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;&lt;span style=&#39;color:</span><span class="si">{</span><span class="n">WARNA</span><span class="p">[</span><span class="n">kode</span><span class="p">]</span><span class="si">}</span><span class="s2">;&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;font-size:24px&#39;&gt;■&lt;/span&gt; **</span><span class="si">{</span><span class="n">nama</span><span class="si">}</span><span class="s2">**&quot;</span><span class="p">,</span>
+                <span class="n">unsafe_allow_html</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+
+<span class="n">st</span><span class="o">.</span><span class="n">subheader</span><span class="p">(</span><span class="s2">&quot;Ringkasan Hasil Klasifikasi&quot;</span><span class="p">)</span>
+
+<span class="n">total</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">hasil</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">KELAS</span><span class="o">.</span><span class="n">keys</span><span class="p">()))))</span>
+<span class="n">st</span><span class="o">.</span><span class="n">metric</span><span class="p">(</span><span class="s2">&quot;Total piksel terklasifikasi&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">total</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">kode</span><span class="p">,</span> <span class="n">nama</span> <span class="ow">in</span> <span class="n">KELAS</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">nama</span> <span class="ow">in</span> <span class="n">pilihan</span><span class="p">:</span>
+        <span class="n">jumlah</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">hasil</span> <span class="o">==</span> <span class="n">kode</span><span class="p">))</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;**</span><span class="si">{</span><span class="n">nama</span><span class="si">}</span><span class="s2">:** </span><span class="si">{</span><span class="n">jumlah</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2"> piksel&quot;</span><span class="p">)</span>
+
+<span class="n">st</span><span class="o">.</span><span class="n">caption</span><span class="p">(</span>
+    <span class="s2">&quot;Peta menampilkan hasil klasifikasi dari file GeoTIFF. &quot;</span>
+    <span class="s2">&quot;Akurasi model perlu dinilai menggunakan hasil testing.&quot;</span>
+<span class="p">)</span>
+
+</pre></div>
+</div>
+<p>Kode tersebut memperlihatkan struktur dasar Streamlit, pembacaan GeoJSON dan raster, serta kontrol pilihan kelas.</p>
+</section>
+<section id="deployment">
+<h2>10.5 Deployment<a class="headerlink" href="#deployment" title="Link to this heading">#</a></h2>
+<p>Aplikasi dipublikasikan melalui Streamlit Community Cloud dan terhubung ke repository GitHub.</p>
+<p>Alamat aplikasi:</p>
+<p><a class="reference external" href="https://mcdgphzwukty3tappd4bpbu.streamlit.app/">https://mcdgphzwukty3tappd4bpbu.streamlit.app/</a></p>
+<p>Deployment memungkinkan aplikasi dijalankan melalui alamat web tanpa pengguna harus menjalankan notebook Google Colab atau kode Streamlit secara manual di komputer mereka.</p>
+</section>
+<section id="pengujian-aplikasi">
+<h2>10.6 Pengujian Aplikasi<a class="headerlink" href="#pengujian-aplikasi" title="Link to this heading">#</a></h2>
+<p>Pengujian antarmuka dilakukan dengan membuka aplikasi yang sudah dipublikasikan dan memeriksa komponen berikut:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Komponen</p></th>
+<th class="head"><p>Hasil pemeriksaan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Judul aplikasi</p></td>
+<td><p>Tampil</p></td>
+</tr>
+<tr class="row-odd"><td><p>Peta satelit</p></td>
+<td><p>Tampil</p></td>
+</tr>
+<tr class="row-even"><td><p>Overlay hasil klasifikasi</p></td>
+<td><p>Tampil</p></td>
+</tr>
+<tr class="row-odd"><td><p>Layer poligon sampel</p></td>
+<td><p>Tampil</p></td>
+</tr>
+<tr class="row-even"><td><p>Filter lima kelas</p></td>
+<td><p>Dapat digunakan</p></td>
+</tr>
+<tr class="row-odd"><td><p>Deployment online</p></td>
+<td><p>Berhasil menampilkan aplikasi</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Pemeriksaan ini merupakan pengujian fungsi antarmuka. Pemeriksaan tersebut berbeda dari pengujian akurasi model yang dilakukan melalui data testing.</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="business-flow-alur-pengolahan">
+<h1>11. BUSINESS FLOW: ALUR PENGOLAHAN<a class="headerlink" href="#business-flow-alur-pengolahan" title="Link to this heading">#</a></h1>
+<p>Alur utama proyek dapat diringkas sebagai berikut:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Pengumpulan data Sentinel-2
+            |
+            v
+Persiapan file band B04, B8A, B11
+            |
+            v
+Pembacaan citra dan metadata
+            |
+            v
+Pembentukan fitur
+B04, B8A, B11, NDVI, NDMI
+            |
+            v
+Pembacaan dan rasterisasi GeoJSON
+            |
+            v
+Penyaringan piksel valid
+            |
+            v
+Pembagian training-testing
+berdasarkan ID poligon
+            |
+            v
+Training Random Forest
+            |
+            v
+Evaluasi model
+Accuracy, precision, recall,
+F1-score, confusion matrix
+            |
+            v
+Klasifikasi seluruh piksel valid
+            |
+            v
+Penyimpanan GeoTIFF
+            |
+            v
+Visualisasi Leaflet
+            |
+            v
+Deployment Streamlit
+</pre></div>
+</div>
+<p>Alur ini menunjukkan tahapan dari pengumpulan data hingga penyajian hasil klasifikasi melalui aplikasi web.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="kesimpulan">
+<h1>12. KESIMPULAN<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h1>
+<p>Proyek ini mengembangkan prototipe klasifikasi tutupan lahan berbasis citra Sentinel-2 Level-2A di Kabupaten Pamekasan, Jawa Timur. Model Random Forest dibangun menggunakan lima fitur, yaitu B04, B8A, B11, NDVI, dan NDMI.</p>
+<p>Data sampel awal berasal dari 50 poligon GeoJSON yang dibagi menjadi data training dan testing berdasarkan ID poligon. Hasil pengujian awal menghasilkan accuracy sebesar 80,32% pada 1.707 sampel piksel testing.</p>
+<p>Model diterapkan pada piksel citra yang memenuhi kriteria validitas, kemudian hasilnya disimpan dalam file <code class="docutils literal notranslate"><span class="pre">hasil_klasifikasi_pamekasan.tif</span></code>. Hasil klasifikasi dan poligon sampel ditampilkan di atas peta satelit melalui aplikasi Streamlit yang menyediakan kontrol layer dan filter kelas.</p>
+<p>Secara keseluruhan, proyek telah mengimplementasikan rangkaian pengolahan data, pembentukan fitur, training-testing, evaluasi model, klasifikasi raster, visualisasi spasial, dan deployment web. Namun, hasil klasifikasi masih perlu ditingkatkan melalui penambahan sampel yang representatif dan evaluasi lanjutan, khususnya untuk kelas building dan water body.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tugas_pertemuan3.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Analisis Data Time Series Kualitas Udara CO Kecamatan Kadur Menggunakan Ekstraksi Fitur TSFEL</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">KLASIFIKASI TUTUPAN LAHAN BERBASIS CITRA SATELIT SENTINEL-2 MENGGUNAKAN RANDOM FOREST DI KABUPATEN PAMEKASAN, JAWA TIMUR</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">1. BUSINESS UNDERSTANDING</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#identifikasi-masalah">1.2 Identifikasi Masalah</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-penelitian">1.3 Tujuan Penelitian</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manfaat">1.4 Manfaat</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruang-lingkup">1.5 Ruang Lingkup</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding">2. DATA UNDERSTANDING</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-citra-satelit-sentinel-2">2.1 Data Citra Satelit Sentinel-2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-poligon-geojson">2.2 Data Poligon GeoJSON</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kelas-tutupan-lahan">2.3 Kelas Tutupan Lahan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemeriksaan-awal-data">2.4 Pemeriksaan Awal Data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-acquisition">3. DATA ACQUISITION</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">3.1 Pengumpulan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-yang-digunakan">3.2 File yang Digunakan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-akuisisi-data">3.3 Tujuan Akuisisi Data</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">4. DATA PREPARATION</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-lingkungan-pengolahan">4.1 Persiapan Lingkungan Pengolahan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membaca-file-band">4.2 Membaca File Band</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembentukan-ndvi">4.3 Pembentukan NDVI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembentukan-ndmi">4.4 Pembentukan NDMI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penggabungan-fitur">4.5 Penggabungan Fitur</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rasterisasi-poligon">4.6 Rasterisasi Poligon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#membuat-id-poligon">4.7 Membuat ID Poligon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyaring-piksel-tidak-valid">4.8 Menyaring Piksel Tidak Valid</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#training-dan-testing">5. TRAINING DAN TESTING</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembagian-dataset">5.1 Pembagian Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-pembagian">5.2 Hasil Pembagian</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemeriksaan-jumlah-poligon">5.3 Pemeriksaan Jumlah Poligon</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-random-forest">6. MODELING: RANDOM FOREST</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pemilihan-algoritma">6.1 Pemilihan Algoritma</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-model">6.2 Konfigurasi Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-training">6.3 Proses Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-testing">6.4 Proses Testing</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">7. EVALUATION</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metrik-evaluasi">7.1 Metrik Evaluasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-akurasi">7.2 Hasil Akurasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-report">7.3 Classification Report</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi">Interpretasi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">7.4 Confusion Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan-evaluasi">7.5 Kesimpulan Evaluasi</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-seluruh-citra">8. KLASIFIKASI SELURUH CITRA</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-klasifikasi">8.1 Tujuan Klasifikasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menentukan-piksel-valid">8.2 Menentukan Piksel Valid</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menerapkan-model">8.3 Menerapkan Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menyimpan-hasil-dalam-geotiff">8.4 Menyimpan Hasil dalam GeoTIFF</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#menampilkan-file-hasil-klasifikasi">8.5 Menampilkan File Hasil Klasifikasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-nilai-piksel">8.6 Ringkasan Nilai Piksel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mengunduh-file-geotiff-dari-google-colab">8.7 Mengunduh File GeoTIFF dari Google Colab</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-peta-tutupan-lahan">9. VISUALISASI PETA TUTUPAN LAHAN</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-visualisasi">9.1 Tujuan Visualisasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-klasifikasi">9.2 Layer Klasifikasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#layer-poligon-geojson">9.3 Layer Poligon GeoJSON</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kontrol-layer-leaflet">9.4 Kontrol Layer Leaflet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-kode-visualisasi-raster-hasil-klasifikasi">9.5 Contoh Kode Visualisasi Raster Hasil Klasifikasi</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-aplikasi-streamlit">10. IMPLEMENTASI APLIKASI STREAMLIT</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-aplikasi">10.1 Tujuan Aplikasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#komponen-aplikasi">10.2 Komponen Aplikasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-yang-diperlukan">10.3 File yang Diperlukan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#struktur-kode-streamlit">10.4 Struktur Kode Streamlit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment">10.5 Deployment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengujian-aplikasi">10.6 Pengujian Aplikasi</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#business-flow-alur-pengolahan">11. BUSINESS FLOW: ALUR PENGOLAHAN</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">12. KESIMPULAN</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Intan Resti Haslindawati (240411100147)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
