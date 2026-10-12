@@ -117,7 +117,7 @@ plt.show()
 ![grafikkonsentrasiNO2](images/grafikkonsentrasiNO2.png)
 
 ###### 3. Visualisasi Peta wilayah kecamatan kadur(Copernicus):
-![peta2](images/peta2.png)
+![images](images/peta2.png)
 
 ##### Missing Value
 Terdeteksi beberapa baris data bernilai kosong/0 yang disebabkan oleh gangguan tutupan awan (cloud cover) saat satelit Sentinel-5P melakukan pemindaian harian.
