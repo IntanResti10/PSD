@@ -59,7 +59,8 @@ serta analisis penggunaan lahan.
 # LOAD GEOJSON
 # ==================================================
 
-geojson_path = "data/klasifikasi_jawa_timur_web_kecil.geojson"
+# FILE ADA LANGSUNG DI REPOSITORY GITHUB
+geojson_path = "klasifikasi_jawa_timur_web_kecil.geojson"
 
 try:
 
@@ -154,7 +155,7 @@ if tampil_mangrove:
 
 st.header("3. Peta Tutupan Lahan Jawa Timur")
 
-# Ambil batas wilayah
+# Ambil batas wilayah GeoJSON
 bounds = gdf.total_bounds
 
 minx, miny, maxx, maxy = bounds
@@ -189,7 +190,7 @@ folium.TileLayer(
 ).add_to(m)
 
 # ==================================================
-# WARNA
+# WARNA SETIAP KELAS
 # ==================================================
 
 warna = {
@@ -300,7 +301,8 @@ st_folium(
 
 st.header("4. Informasi Hasil Klasifikasi")
 
-luas_path = "data/luas_klasifikasi_jawa_timur.csv"
+# FILE CSV JUGA ADA LANGSUNG DI REPOSITORY
+luas_path = "luas_klasifikasi_jawa_timur.csv"
 
 try:
 
