@@ -1,265 +1,442 @@
-
 import streamlit as st
-import rasterio
 import geopandas as gpd
-import numpy as np
+import pandas as pd
 import folium
-
-from folium.raster_layers import ImageOverlay
 from streamlit_folium import st_folium
-from matplotlib.colors import to_rgb
-from rasterio.warp import transform_bounds
 
-# =========================
-# 1. PENGATURAN APLIKASI
-# =========================
+# ==================================================
+# KONFIGURASI
+# ==================================================
+
 st.set_page_config(
-    page_title="Klasifikasi Tutupan Lahan Pamekasan",
-    page_icon="🌍",
+    page_title="Klasifikasi Tutupan Lahan Jawa Timur",
+    page_icon="🗺️",
     layout="wide"
 )
 
-st.title("Klasifikasi Tutupan Lahan Pamekasan")
+# ==================================================
+# JUDUL
+# ==================================================
+
+st.title("🗺️ Klasifikasi Tutupan Lahan Jawa Timur")
+
 st.write(
-    "Pemetaan tutupan lahan menggunakan citra Sentinel-2 "
-    "dan algoritma Random Forest."
+    "Pemetaan tutupan lahan Jawa Timur menggunakan "
+    "citra Sentinel-2 dan algoritma Random Forest."
 )
 
-RASTER_PATH = "hasil_klasifikasi_pamekasan.tif"
-GEOJSON_PATH = "polygon.geojson"
+# ==================================================
+# BUSINESS UNDERSTANDING
+# ==================================================
 
-KELAS = {
-    1: "building",
-    2: "farmland",
-    3: "water_body",
-    4: "forest",
-    5: "mangrove"
-}
+st.header("1. Business Understanding")
 
-WARNA = {
-    1: "#d73027",
-    2: "#fdae61",
-    3: "#4575b4",
-    4: "#1a9850",
-    5: "#66c2a5"
-}
+st.subheader("Tujuan Proyek")
 
-# =========================
-# 2. MEMBACA DATA
-# =========================
-@st.cache_data
-def baca_raster(path):
-    with rasterio.open(path) as src:
-        data = src.read(1)
-        batas = src.bounds
-        crs = src.crs
-        transformasi = src.transform
-        nodata = src.nodata
+st.write("""
+Proyek ini bertujuan untuk mengidentifikasi dan memetakan
+tutupan lahan di wilayah Jawa Timur berdasarkan citra
+satelit Sentinel-2 menggunakan metode klasifikasi Random Forest.
 
-    if crs is None:
-        raise ValueError("CRS raster tidak ditemukan.")
+Hasil klasifikasi dibagi menjadi lima kelas, yaitu:
 
-    # Mengubah batas raster ke koordinat geografis
-    # yang diperlukan untuk peta Folium.
-    batas_geo = transform_bounds(
-        crs,
-        "EPSG:4326",
-        batas.left,
-        batas.bottom,
-        batas.right,
-        batas.top
-    )
+1. Bangunan (Built-up)
+2. Lahan pertanian / sawah (Farm Land)
+3. Perairan (Water Body)
+4. Hutan (Forest)
+5. Hutan Mangrove (Mangrove Forest)
 
-    return data, batas_geo, nodata
+Hasil klasifikasi digunakan untuk memperoleh informasi
+mengenai persebaran dan luas masing-masing jenis tutupan
+lahan di Jawa Timur.
 
+Informasi tersebut dapat digunakan sebagai gambaran awal
+kondisi permukaan bumi dan membantu proses pemantauan
+serta analisis penggunaan lahan.
+""")
 
-@st.cache_data
-def baca_geojson(path):
-    data = gpd.read_file(path)
+# ==================================================
+# LOAD GEOJSON
+# ==================================================
 
-    if data.crs is None:
-        raise ValueError(
-            "CRS GeoJSON tidak ditemukan. "
-            "Pastikan file GeoJSON memiliki informasi CRS."
-        )
-
-    return data.to_crs("EPSG:4326")
-
+geojson_path = "data/klasifikasi_jawa_timur_web.geojson"
 
 try:
-    hasil, batas_geo, nodata = baca_raster(RASTER_PATH)
-    poligon = baca_geojson(GEOJSON_PATH)
+
+    gdf = gpd.read_file(geojson_path)
+
+    st.success(
+        f"Data klasifikasi berhasil dimuat: {len(gdf):,} area"
+    )
 
 except Exception as e:
-    st.error("Data belum berhasil dibaca.")
+
+    st.error("GeoJSON tidak dapat dibaca.")
     st.code(str(e))
-    st.info(
-        "Pastikan app.py, file GeoTIFF, dan polygon.geojson "
-        "berada di folder proyek yang sama."
-    )
     st.stop()
 
-# =========================
-# 3. FILTER KELAS
-# =========================
-st.subheader("Pilih Kelas Tutupan Lahan")
+# ==================================================
+# PASTIKAN CRS
+# ==================================================
 
-pilihan = st.multiselect(
-    "Pilih kelas yang ingin ditampilkan pada peta:",
-    options=list(KELAS.values()),
-    default=list(KELAS.values())
+if gdf.crs is not None:
+    gdf = gdf.to_crs("EPSG:4326")
+
+# ==================================================
+# FILTER KELAS
+# ==================================================
+
+st.header("2. Filter Kelas Tutupan Lahan")
+
+st.write(
+    "Centang kelas tutupan lahan yang ingin "
+    "ditampilkan pada peta."
 )
 
-# =========================
-# 4. MEMBUAT OVERLAY
-# =========================
-# Raster hasil klasifikasi diasumsikan memakai:
-# 1=building, 2=farmland, 3=water_body,
-# 4=forest, 5=mangrove.
-# Nilai 0 dianggap sebagai area tanpa klasifikasi.
+col1, col2, col3, col4, col5 = st.columns(5)
 
-rgba = np.zeros(
-    (hasil.shape[0], hasil.shape[1], 4),
-    dtype=np.uint8
+with col1:
+    tampil_bangunan = st.checkbox(
+        "🏢 Bangunan",
+        value=True
+    )
+
+with col2:
+    tampil_sawah = st.checkbox(
+        "🌾 Sawah",
+        value=True
+    )
+
+with col3:
+    tampil_perairan = st.checkbox(
+        "🌊 Perairan",
+        value=True
+    )
+
+with col4:
+    tampil_hutan = st.checkbox(
+        "🌳 Hutan",
+        value=True
+    )
+
+with col5:
+    tampil_mangrove = st.checkbox(
+        "🌱 Mangrove",
+        value=True
+    )
+
+# Membuat daftar kelas yang dipilih
+kelas_dipilih = []
+
+if tampil_bangunan:
+    kelas_dipilih.append("bangunan")
+
+if tampil_sawah:
+    kelas_dipilih.append("sawah")
+
+if tampil_perairan:
+    kelas_dipilih.append("perairan")
+
+if tampil_hutan:
+    kelas_dipilih.append("hutan")
+
+if tampil_mangrove:
+    kelas_dipilih.append("mangrove")
+
+# ==================================================
+# PETA
+# ==================================================
+
+st.header("3. Peta Tutupan Lahan Jawa Timur")
+
+# Ambil batas wilayah GeoJSON
+bounds = gdf.total_bounds
+
+minx, miny, maxx, maxy = bounds
+
+center_lat = (miny + maxy) / 2
+center_lon = (minx + maxx) / 2
+
+# ==================================================
+# BUAT PETA
+# ==================================================
+
+m = folium.Map(
+    location=[center_lat, center_lon],
+    zoom_start=8,
+    tiles=None
 )
 
-for kode, nama in KELAS.items():
-    if nama not in pilihan:
-        continue
+# ==================================================
+# CITRA SATELIT
+# ==================================================
 
-    mask = hasil == kode
-    rgb = np.array(to_rgb(WARNA[kode])) * 255
-
-    rgba[mask, 0] = int(rgb[0])
-    rgba[mask, 1] = int(rgb[1])
-    rgba[mask, 2] = int(rgb[2])
-    rgba[mask, 3] = 180
-
-# Kosongkan piksel NoData jika memang ditentukan di GeoTIFF.
-if nodata is not None:
-    rgba[hasil == nodata, 3] = 0
-
-# =========================
-# 5. MEMBUAT PETA
-# =========================
-left, bottom, right, top = batas_geo
-
-tengah = [
-    (bottom + top) / 2,
-    (left + right) / 2
-]
-
-peta = folium.Map(
-    location=tengah,
-    zoom_start=12,
-    tiles="OpenStreetMap",
-    control_scale=True
-)
-
-# Layer citra satelit.
 folium.TileLayer(
     tiles=(
-        "https://server.arcgisonline.com/ArcGIS/rest/services/"
-        "World_Imagery/MapServer/tile/{z}/{y}/{x}"
+        "https://server.arcgisonline.com/ArcGIS/"
+        "rest/services/World_Imagery/"
+        "MapServer/tile/{z}/{y}/{x}"
     ),
-    attr="Tiles © Esri",
+    attr="Esri World Imagery",
     name="Citra Satelit",
     overlay=False,
     control=True
-).add_to(peta)
+).add_to(m)
 
-# Layer hasil klasifikasi.
-ImageOverlay(
-    image=rgba,
-    bounds=[[bottom, left], [top, right]],
-    opacity=1,
-    name="Hasil Klasifikasi",
-    interactive=False,
-    cross_origin=False,
-    zindex=2
-).add_to(peta)
+# ==================================================
+# WARNA SETIAP KELAS
+# ==================================================
 
-# =========================
-# 6. LAYER POLIGON SAMPEL
-# =========================
-kolom_kelas = None
+warna = {
+    "bangunan": "red",
+    "sawah": "yellow",
+    "perairan": "blue",
+    "hutan": "green",
+    "mangrove": "purple"
+}
 
-for nama_kolom in ["kelas", "class", "label", "Class", "Kelas"]:
-    if nama_kolom in poligon.columns:
-        kolom_kelas = nama_kolom
-        break
+# ==================================================
+# LAYER KLASIFIKASI
+# ==================================================
 
-if kolom_kelas is not None:
-    poligon_tampil = poligon[
-        poligon[kolom_kelas].astype(str).isin(pilihan)
-    ]
+for nama_kelas in kelas_dipilih:
 
-    if not poligon_tampil.empty:
-        folium.GeoJson(
-            poligon_tampil,
-            name="Poligon Sampel",
-            tooltip=folium.GeoJsonTooltip(
-                fields=[kolom_kelas],
-                aliases=["Kelas:"]
-            ),
-            style_function=lambda feature: {
-                "color": "#ffffff",
-                "weight": 2,
-                "fillOpacity": 0.08
-            }
-        ).add_to(peta)
+    data_kelas = gdf[
+        gdf["class"] == nama_kelas
+    ].copy()
 
-folium.LayerControl(collapsed=False).add_to(peta)
+    # Kalau kelas tidak ada, dilewati
+    if data_kelas.empty:
+        continue
 
-# Sesuaikan tampilan peta dengan area raster.
-peta.fit_bounds([
-    [bottom, left],
-    [top, right]
-])
+    layer = folium.FeatureGroup(
+        name=nama_kelas.capitalize(),
+        show=True
+    )
 
-# =========================
-# 7. MENAMPILKAN PETA
-# =========================
-st.subheader("Peta Interaktif")
+    folium.GeoJson(
+        data_kelas.to_json(),
+        style_function=lambda feature,
+        warna_kelas=warna[nama_kelas]: {
+            "fillColor": warna_kelas,
+            "color": warna_kelas,
+            "weight": 0.3,
+            "fillOpacity": 0.45
+        },
+        tooltip=folium.GeoJsonTooltip(
+            fields=["class"],
+            aliases=["Kelas:"]
+        )
+    ).add_to(layer)
+
+    layer.add_to(m)
+
+# ==================================================
+# LAYER CONTROL
+# ==================================================
+
+folium.LayerControl(
+    collapsed=False
+).add_to(m)
+
+# ==================================================
+# LEGENDA
+# ==================================================
+
+legend_html = """
+<div style="
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 180px;
+    background-color: white;
+    border: 2px solid grey;
+    z-index: 9999;
+    padding: 10px;
+    font-size: 14px;
+">
+
+<b>Legenda Tutupan Lahan</b><br><br>
+
+<span style="color:red;">■</span>
+Bangunan<br>
+
+<span style="color:#FFD700;">■</span>
+Sawah<br>
+
+<span style="color:blue;">■</span>
+Perairan<br>
+
+<span style="color:green;">■</span>
+Hutan<br>
+
+<span style="color:purple;">■</span>
+Mangrove
+
+</div>
+"""
+
+m.get_root().html.add_child(
+    folium.Element(legend_html)
+)
+
+# ==================================================
+# TAMPILKAN PETA
+# ==================================================
 
 st_folium(
-    peta,
-    key="peta_pamekasan",
-    height=600,
-    use_container_width=True,
-    returned_objects=[]
+    m,
+    width=1200,
+    height=650
 )
 
-# =========================
-# 8. LEGENDA
-# =========================
-st.subheader("Legenda Kelas")
+# ==================================================
+# INFORMASI HASIL
+# ==================================================
 
-kolom = st.columns(5)
+st.header("4. Informasi Hasil Klasifikasi")
 
-for i, (kode, nama) in enumerate(KELAS.items()):
-    if nama in pilihan:
-        with kolom[i]:
-            st.markdown(
-                f"<span style='color:{WARNA[kode]};"
-                f"font-size:24px'>■</span> **{nama}**",
-                unsafe_allow_html=True
-            )
+luas_path = "data/luas_klasifikasi_jawa_timur.csv"
 
-# =========================
-# 9. RINGKASAN DATA
-# =========================
-st.subheader("Ringkasan Hasil Klasifikasi")
+try:
 
-total = int(np.count_nonzero(np.isin(hasil, list(KELAS.keys()))))
-st.metric("Total piksel terklasifikasi", f"{total:,}")
+    luas = pd.read_csv(luas_path)
 
-for kode, nama in KELAS.items():
-    if nama in pilihan:
-        jumlah = int(np.count_nonzero(hasil == kode))
-        st.write(f"**{nama}:** {jumlah:,} piksel")
+    st.subheader("Luas Tutupan Lahan Jawa Timur")
 
-st.caption(
-    "Peta menampilkan hasil klasifikasi dari file GeoTIFF. "
-    "Akurasi model perlu dinilai menggunakan hasil testing."
+    st.dataframe(
+        luas,
+        use_container_width=True
+    )
+
+except Exception as e:
+
+    st.warning(
+        "Data luas belum dapat ditampilkan."
+    )
+
+# ==================================================
+# LUAS HASIL KLASIFIKASI
+# ==================================================
+
+st.subheader("Ringkasan Luas Tutupan Lahan")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+
+    st.metric(
+        "🏢 Bangunan",
+        "263.997,94 ha"
+    )
+
+with col2:
+
+    st.metric(
+        "🌾 Sawah",
+        "929.885,42 ha"
+    )
+
+with col3:
+
+    st.metric(
+        "🌊 Perairan",
+        "3.240.326,33 ha"
+    )
+
+col4, col5 = st.columns(2)
+
+with col4:
+
+    st.metric(
+        "🌳 Hutan",
+        "873.192,83 ha"
+    )
+
+with col5:
+
+    st.metric(
+        "🌱 Mangrove",
+        "1.299.548,65 ha"
+    )
+
+# ==================================================
+# GRAFIK
+# ==================================================
+
+st.subheader("Grafik Luas Tutupan Lahan")
+
+data_grafik = pd.DataFrame({
+    "Kelas": [
+        "Bangunan",
+        "Sawah",
+        "Perairan",
+        "Hutan",
+        "Mangrove"
+    ],
+    "Luas (ha)": [
+        263997.94,
+        929885.42,
+        3240326.33,
+        873192.83,
+        1299548.65
+    ]
+})
+
+st.bar_chart(
+    data_grafik.set_index("Kelas")
 )
+
+# ==================================================
+# EVALUASI MODEL
+# ==================================================
+
+st.header("5. Evaluasi Model")
+
+col1, col2 = st.columns(2)
+
+with col1:
+
+    st.metric(
+        "Accuracy",
+        "97,72%"
+    )
+
+with col2:
+
+    st.metric(
+        "Jumlah Kelas",
+        "5"
+    )
+
+st.write("""
+Model Random Forest dilatih menggunakan data training
+hasil digitasi wilayah Pamekasan. Model kemudian digunakan
+untuk melakukan klasifikasi tutupan lahan pada wilayah
+Jawa Timur.
+
+Berdasarkan pengujian model, diperoleh nilai accuracy
+sebesar 97,72%.
+""")
+
+# ==================================================
+# INFORMASI METODE
+# ==================================================
+
+st.header("6. Metode yang Digunakan")
+
+st.write("""
+**Data:** Citra Sentinel-2
+
+**Wilayah:** Jawa Timur
+
+**Metode klasifikasi:** Random Forest
+
+**Jumlah kelas:** 5 kelas
+
+**Band yang digunakan:**
+B02, B03, B04, B08, B8A, B11, dan B12
+
+**Kelas tutupan lahan:**
+Bangunan, Sawah, Perairan, Hutan, dan Mangrove.
+""")
