@@ -59,7 +59,7 @@ serta analisis penggunaan lahan.
 # LOAD GEOJSON
 # ==================================================
 
-geojson_path = "data/klasifikasi_jawa_timur_web.geojson"
+geojson_path = "data/klasifikasi_jawa_timur_web_kecil.geojson"
 
 try:
 
