@@ -72,7 +72,9 @@ try:
 except Exception as e:
 
     st.error("GeoJSON tidak dapat dibaca.")
+
     st.code(str(e))
+
     st.stop()
 
 # ==================================================
@@ -125,7 +127,10 @@ with col5:
         value=True
     )
 
-# Membuat daftar kelas yang dipilih
+# ==================================================
+# DAFTAR KELAS YANG DIPILIH
+# ==================================================
+
 kelas_dipilih = []
 
 if tampil_bangunan:
@@ -149,7 +154,7 @@ if tampil_mangrove:
 
 st.header("3. Peta Tutupan Lahan Jawa Timur")
 
-# Ambil batas wilayah GeoJSON
+# Ambil batas wilayah
 bounds = gdf.total_bounds
 
 minx, miny, maxx, maxy = bounds
@@ -184,7 +189,7 @@ folium.TileLayer(
 ).add_to(m)
 
 # ==================================================
-# WARNA SETIAP KELAS
+# WARNA
 # ==================================================
 
 warna = {
@@ -205,7 +210,6 @@ for nama_kelas in kelas_dipilih:
         gdf["class"] == nama_kelas
     ].copy()
 
-    # Kalau kelas tidak ada, dilewati
     if data_kelas.empty:
         continue
 
@@ -316,7 +320,7 @@ except Exception as e:
     )
 
 # ==================================================
-# LUAS HASIL KLASIFIKASI
+# RINGKASAN LUAS
 # ==================================================
 
 st.subheader("Ringkasan Luas Tutupan Lahan")
@@ -324,21 +328,18 @@ st.subheader("Ringkasan Luas Tutupan Lahan")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-
     st.metric(
         "🏢 Bangunan",
         "263.997,94 ha"
     )
 
 with col2:
-
     st.metric(
         "🌾 Sawah",
         "929.885,42 ha"
     )
 
 with col3:
-
     st.metric(
         "🌊 Perairan",
         "3.240.326,33 ha"
@@ -347,14 +348,12 @@ with col3:
 col4, col5 = st.columns(2)
 
 with col4:
-
     st.metric(
         "🌳 Hutan",
         "873.192,83 ha"
     )
 
 with col5:
-
     st.metric(
         "🌱 Mangrove",
         "1.299.548,65 ha"
@@ -396,14 +395,12 @@ st.header("5. Evaluasi Model")
 col1, col2 = st.columns(2)
 
 with col1:
-
     st.metric(
         "Accuracy",
         "97,72%"
     )
 
 with col2:
-
     st.metric(
         "Jumlah Kelas",
         "5"
