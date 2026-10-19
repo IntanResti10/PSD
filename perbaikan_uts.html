@@ -1,0 +1,1134 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>KLASIFIKASI TUTUPAN LAHAN JAWA TIMUR MENGGUNAKAN CITRA SENTINEL-2 DAN ALGORITMA RANDOM FOREST &#8212; Proyek Sains Data - Intan Resti Haslindawati</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'perbaikan_uts';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="KLASIFIKASI TUTUPAN LAHAN BERBASIS CITRA SATELIT SENTINEL-2 MENGGUNAKAN RANDOM FOREST DI KABUPATEN PAMEKASAN, JAWA TIMUR" href="uts_psd.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/intan.jpeg" class="logo__image only-light" alt="Proyek Sains Data - Intan Resti Haslindawati - Home"/>
+    <img src="_static/intan.jpeg" class="logo__image only-dark pst-js-only" alt="Proyek Sains Data - Intan Resti Haslindawati - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Proyek Sains Data - Portfolio Materi
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bussiness_understanding.html">Crawling Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tugas_pertemuan2.html">Pemindahan Data ke Cloud (Aiven) dan Analisis Statistik Menggunakan KNIME</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="tugas_pertemuan3.html">Analisis Data Time Series Kualitas Udara CO Kecamatan Kadur Menggunakan Ekstraksi Fitur TSFEL</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="uts_psd.html">KLASIFIKASI TUTUPAN LAHAN BERBASIS CITRA SATELIT SENTINEL-2 MENGGUNAKAN RANDOM FOREST DI KABUPATEN PAMEKASAN, JAWA TIMUR</a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">KLASIFIKASI TUTUPAN LAHAN JAWA TIMUR MENGGUNAKAN CITRA SENTINEL-2 DAN ALGORITMA RANDOM FOREST</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fperbaikan_uts.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/perbaikan_uts.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>KLASIFIKASI TUTUPAN LAHAN JAWA TIMUR MENGGUNAKAN CITRA SENTINEL-2 DAN ALGORITMA RANDOM FOREST</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">1. Business Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">1.2 Tujuan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fokus-proyek">1.3 Fokus Proyek</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembentukan-data-training">2. Pembentukan Data Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wilayah-training">2.1 Wilayah Training</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kelas-hasil-digitasi">2.2 Kelas Hasil Digitasi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-digitasi">2.3 Hasil Digitasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">3. Data Preparation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-nilai-piksel">3.1 Ekstraksi Nilai Piksel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-training">3.2 Dataset Training</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">4. Modeling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-random-forest">4.1 Algoritma Random Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-training">4.2 Proses Training</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-wilayah-jawa-timur">5. Klasifikasi Wilayah Jawa Timur</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penerapan-model">5.1 Penerapan Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-piksel-hasil-klasifikasi">5.2 Jumlah Piksel Hasil Klasifikasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-klasifikasi">5.3 Hasil Klasifikasi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembuatan-layer-geojson">6. Pembuatan Layer GeoJSON</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-peta">7. Visualisasi Peta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-kelas-tutupan-lahan">8. Filter Kelas Tutupan Lahan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model">9. Evaluasi Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-97-72">Accuracy = 97,72%</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-aplikasi-streamlit">10. Implementasi Aplikasi Streamlit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-aplikasi">Fitur Aplikasi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment">12. Deployment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="klasifikasi-tutupan-lahan-jawa-timur-menggunakan-citra-sentinel-2-dan-algoritma-random-forest">
+<h1>KLASIFIKASI TUTUPAN LAHAN JAWA TIMUR MENGGUNAKAN CITRA SENTINEL-2 DAN ALGORITMA RANDOM FOREST<a class="headerlink" href="#klasifikasi-tutupan-lahan-jawa-timur-menggunakan-citra-sentinel-2-dan-algoritma-random-forest" title="Link to this heading">#</a></h1>
+<section id="business-understanding">
+<h2>1. Business Understanding<a class="headerlink" href="#business-understanding" title="Link to this heading">#</a></h2>
+<section id="latar-belakang">
+<h3>1.1 Latar Belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h3>
+<p>Tutupan lahan merupakan informasi yang penting untuk mengetahui kondisi permukaan bumi. Informasi tersebut dapat digunakan untuk melihat persebaran area terbangun, lahan pertanian, perairan, hutan, dan hutan mangrove.</p>
+<p>Wilayah Jawa Timur memiliki wilayah yang cukup luas sehingga identifikasi tutupan lahan secara manual membutuhkan waktu
+yang cukup lama. Oleh karena itu, diperlukan suatu metode yang dapat melakukan klasifikasi secara otomatis berdasarkan informasi yang terdapat pada citra satelit.</p>
+<p>Pada proyek ini digunakan citra Sentinel-2 sebagai sumber data dan algoritma Random Forest untuk melakukan klasifikasi tutupan lahan.</p>
+<p>Data training dibentuk melalui proses digitasi polygon pada wilayah Kabupaten Pamekasan. Hasil digitasi tersebut kemudian
+digunakan untuk melatih model Random Forest.</p>
+<p>Model yang telah dilatih selanjutnya diterapkan pada citra Sentinel-2 wilayah Jawa Timur untuk memperoleh hasil klasifikasi tutupan lahan.</p>
+</section>
+<section id="tujuan">
+<h3>1.2 Tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h3>
+<p>Tujuan dari proyek ini adalah:</p>
+<ol class="arabic simple">
+<li><p>Mengidentifikasi tutupan lahan di wilayah Jawa Timur.</p></li>
+<li><p>Memanfaatkan citra Sentinel-2 sebagai sumber data.</p></li>
+<li><p>Membentuk data training melalui digitasi polygon
+di wilayah Pamekasan.</p></li>
+<li><p>Melatih model klasifikasi menggunakan Random Forest.</p></li>
+<li><p>Menerapkan model hasil training pada wilayah Jawa Timur.</p></li>
+<li><p>Mengklasifikasikan tutupan lahan menjadi lima kelas.</p></li>
+<li><p>Membuat hasil klasifikasi dalam bentuk GeoJSON.</p></li>
+<li><p>Menampilkan hasil klasifikasi di atas citra satelit.</p></li>
+<li><p>Menyediakan fitur filter berdasarkan kelas tutupan lahan.</p></li>
+<li><p>Menyajikan hasil klasifikasi dalam aplikasi Streamlit.</p></li>
+</ol>
+</section>
+<section id="fokus-proyek">
+<h3>1.3 Fokus Proyek<a class="headerlink" href="#fokus-proyek" title="Link to this heading">#</a></h3>
+<p>Fokus utama proyek adalah menghasilkan informasi mengenai persebaran tutupan lahan Jawa Timur melalui klasifikasi citra Sentinel-2 menggunakan model Random Forest.</p>
+<p>Hasil akhir proyek berupa peta interaktif yang dapat menampilkan lima kelas tutupan lahan dan informasi luas masing-masing kelas.</p>
+</section>
+</section>
+<section id="pembentukan-data-training">
+<h2>2. Pembentukan Data Training<a class="headerlink" href="#pembentukan-data-training" title="Link to this heading">#</a></h2>
+</section>
+<section id="wilayah-training">
+<h2>2.1 Wilayah Training<a class="headerlink" href="#wilayah-training" title="Link to this heading">#</a></h2>
+<p>Data training pada proyek ini diperoleh dari wilayah Kabupaten Pamekasan.</p>
+<p>Pamekasan digunakan sebagai wilayah training karena proses pembentukan polygon dilakukan secara manual pada wilayah tersebut.</p>
+<p>Polygon hasil digitasi digunakan untuk memberikan label terhadap objek tutupan lahan yang terdapat pada citra.</p>
+<p>Dengan demikian, terdapat perbedaan antara wilayah training dan wilayah klasifikasi:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tahapan</p></th>
+<th class="head"><p>Wilayah</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Digitasi polygon</p></td>
+<td><p>Pamekasan</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data training</p></td>
+<td><p>Pamekasan</p></td>
+</tr>
+<tr class="row-even"><td><p>Training Random Forest</p></td>
+<td><p>Data hasil digitasi Pamekasan</p></td>
+</tr>
+<tr class="row-odd"><td><p>Penerapan model</p></td>
+<td><p>Jawa Timur</p></td>
+</tr>
+<tr class="row-even"><td><p>Hasil klasifikasi</p></td>
+<td><p>Jawa Timur</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="kelas-hasil-digitasi">
+<h3>2.2 Kelas Hasil Digitasi<a class="headerlink" href="#kelas-hasil-digitasi" title="Link to this heading">#</a></h3>
+<p>Polygon dibuat untuk mewakili lima kelas tutupan lahan:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>No</p></th>
+<th class="head"><p>Kelas</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>1</p></td>
+<td><p>Bangunan</p></td>
+<td><p>Area terbangun</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>2</p></td>
+<td><p>Sawah</p></td>
+<td><p>Lahan pertanian/sawah</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>3</p></td>
+<td><p>Perairan</p></td>
+<td><p>Laut, sungai, danau, atau badan air</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>4</p></td>
+<td><p>Hutan</p></td>
+<td><p>Hutan/vegetasi daratan</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>5</p></td>
+<td><p>Mangrove</p></td>
+<td><p>Vegetasi mangrove</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="hasil-digitasi">
+<h2>2.3 Hasil Digitasi<a class="headerlink" href="#hasil-digitasi" title="Link to this heading">#</a></h2>
+<p>Digitasi dilakukan dengan membuat polygon pada objek yang sesuai dengan kelas tutupan lahannya.</p>
+<p>Setiap polygon kemudian digunakan untuk mengambil nilai piksel dari band Sentinel-2.</p>
+<p><img alt="digitasi" src="_images/per1.png" /></p>
+</section>
+<section id="data-preparation">
+<h2>3. Data Preparation<a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h2>
+<section id="ekstraksi-nilai-piksel">
+<h3>3.1 Ekstraksi Nilai Piksel<a class="headerlink" href="#ekstraksi-nilai-piksel" title="Link to this heading">#</a></h3>
+<p>Setelah polygon dibuat, dilakukan proses ekstraksi nilai piksel dari citra Sentinel-2. Setiap piksel memiliki nilai berdasarkan band yang digunakan.</p>
+<p>Secara sederhana, satu piksel direpresentasikan sebagai:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">B02</span><span class="p">,</span> <span class="n">B03</span><span class="p">,</span> <span class="n">B04</span><span class="p">,</span> <span class="n">B08</span><span class="p">,</span> <span class="n">B8A</span><span class="p">,</span> <span class="n">B11</span><span class="p">,</span> <span class="n">B12</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Nilai tersebut kemudian dikaitkan dengan label berdasarkan polygon tempat piksel tersebut berada.
+Sebagai contoh:
+Nilai Band
+↓
+B02, B03, B04, B08, B8A, B11, B12
+↓
+Polygon hasil digitasi
+↓
+Label = Sawah</p>
+<p>Proses tersebut dilakukan untuk seluruh kelas.</p>
+</section>
+<section id="dataset-training">
+<h3>3.2 Dataset Training<a class="headerlink" href="#dataset-training" title="Link to this heading">#</a></h3>
+<p>Dataset training yang dihasilkan terdiri dari nilai band sebagai fitur dan kelas tutupan lahan sebagai target.
+Contoh struktur data:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-right"><p>B02</p></th>
+<th class="head text-right"><p>B03</p></th>
+<th class="head text-right"><p>B04</p></th>
+<th class="head text-right"><p>B08</p></th>
+<th class="head text-right"><p>B8A</p></th>
+<th class="head text-right"><p>B11</p></th>
+<th class="head text-right"><p>B12</p></th>
+<th class="head"><p>class</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-right"><p>4365.0</p></td>
+<td class="text-right"><p>8087.0</p></td>
+<td class="text-right"><p>10479.0</p></td>
+<td class="text-right"><p>20204.0</p></td>
+<td class="text-right"><p>20539.0</p></td>
+<td class="text-right"><p>27053.0</p></td>
+<td class="text-right"><p>23160.0</p></td>
+<td><p>bangunan</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>6154.0</p></td>
+<td class="text-right"><p>9037.0</p></td>
+<td class="text-right"><p>13618.0</p></td>
+<td class="text-right"><p>17314.0</p></td>
+<td class="text-right"><p>19936.0</p></td>
+<td class="text-right"><p>27145.0</p></td>
+<td class="text-right"><p>23953.0</p></td>
+<td><p>bangunan</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>4686.0</p></td>
+<td class="text-right"><p>7799.0</p></td>
+<td class="text-right"><p>11023.0</p></td>
+<td class="text-right"><p>20080.0</p></td>
+<td class="text-right"><p>19031.0</p></td>
+<td class="text-right"><p>24844.0</p></td>
+<td class="text-right"><p>21869.0</p></td>
+<td><p>bangunan</p></td>
+</tr>
+<tr class="row-odd"><td class="text-right"><p>7687.0</p></td>
+<td class="text-right"><p>10217.0</p></td>
+<td class="text-right"><p>11377.0</p></td>
+<td class="text-right"><p>14837.0</p></td>
+<td class="text-right"><p>17799.0</p></td>
+<td class="text-right"><p>23678.0</p></td>
+<td class="text-right"><p>20834.0</p></td>
+<td><p>bangunan</p></td>
+</tr>
+<tr class="row-even"><td class="text-right"><p>11095.0</p></td>
+<td class="text-right"><p>12288.0</p></td>
+<td class="text-right"><p>15984.0</p></td>
+<td class="text-right"><p>19117.0</p></td>
+<td class="text-right"><p>18959.0</p></td>
+<td class="text-right"><p>27931.0</p></td>
+<td class="text-right"><p>25146.0</p></td>
+<td><p>bangunan</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Data inilah yang digunakan sebagai input untuk proses training Random Forest.</p>
+</section>
+</section>
+<section id="modeling">
+<h2>4. Modeling<a class="headerlink" href="#modeling" title="Link to this heading">#</a></h2>
+<section id="algoritma-random-forest">
+<h3>4.1 Algoritma Random Forest<a class="headerlink" href="#algoritma-random-forest" title="Link to this heading">#</a></h3>
+<p>Algoritma yang digunakan dalam proyek ini adalah Random Forest.</p>
+<p>Random Forest merupakan algoritma machine learning yang menggunakan banyak decision tree untuk menghasilkan suatu
+keputusan klasifikasi.</p>
+<p>Dalam proyek ini, Random Forest digunakan untuk mempelajari hubungan antara nilai spektral citra Sentinel-2 dengan kelas
+tutupan lahan.</p>
+<p>Input model:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">B02</span>
+<span class="n">B03</span>
+<span class="n">B04</span>
+<span class="n">B08</span>
+<span class="n">B8A</span>
+<span class="n">B11</span>
+<span class="n">B12</span>
+</pre></div>
+</div>
+<p>Target:
+Bangunan
+Sawah
+Perairan
+Hutan
+Mangrove</p>
+</section>
+<section id="proses-training">
+<h3>4.2 Proses Training<a class="headerlink" href="#proses-training" title="Link to this heading">#</a></h3>
+<p>Data hasil digitasi Pamekasan digunakan sebagai data training.</p>
+<p><strong>Alur proses training:</strong></p>
+<p>Data Training Pamekasan
+↓
+Nilai 7 Band Sentinel-2
+↓
+Random Forest
+↓
+Model Terlatih</p>
+<p>Model kemudian digunakan untuk memprediksi kelas tutupan lahan pada piksel citra Jawa Timur.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span>
+    <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span>
+<span class="p">)</span>
+
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model Random Forest berhasil dilatih!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="klasifikasi-wilayah-jawa-timur">
+<h2>5. Klasifikasi Wilayah Jawa Timur<a class="headerlink" href="#klasifikasi-wilayah-jawa-timur" title="Link to this heading">#</a></h2>
+<section id="penerapan-model">
+<h3>5.1 Penerapan Model<a class="headerlink" href="#penerapan-model" title="Link to this heading">#</a></h3>
+<p>Setelah proses training selesai, model Random Forest digunakan untuk melakukan klasifikasi terhadap citra Sentinel-2 wilayah Jawa Timur.</p>
+<p>Setiap piksel valid diberikan prediksi berupa salah satu dari lima kelas tutupan lahan.</p>
+<p>Alur prosesnya:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Model Random Forest Terlatih
+             ↓
+Citra Sentinel-2 Jawa Timur
+             ↓
+Ekstraksi nilai band
+             ↓
+Prediksi setiap piksel
+             ↓
+Kelas Tutupan Lahan
+</pre></div>
+</div>
+</section>
+<section id="jumlah-piksel-hasil-klasifikasi">
+<h3>5.2 Jumlah Piksel Hasil Klasifikasi<a class="headerlink" href="#jumlah-piksel-hasil-klasifikasi" title="Link to this heading">#</a></h3>
+<p>Hasil klasifikasi menghasilkan jumlah piksel sebagai berikut:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head text-right"><p>Jumlah Piksel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Bangunan</p></td>
+<td class="text-right"><p>116.962</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sawah</p></td>
+<td class="text-right"><p>411.688</p></td>
+</tr>
+<tr class="row-even"><td><p>Perairan</p></td>
+<td class="text-right"><p>1.434.527</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hutan</p></td>
+<td class="text-right"><p>386.855</p></td>
+</tr>
+<tr class="row-even"><td><p>Mangrove</p></td>
+<td class="text-right"><p>575.576</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Gambar 6. Jumlah piksel hasil klasifikasi setiap kelas.</p>
+</section>
+<section id="hasil-klasifikasi">
+<h3>5.3 Hasil Klasifikasi<a class="headerlink" href="#hasil-klasifikasi" title="Link to this heading">#</a></h3>
+<p>Hasil klasifikasi kemudian disusun menjadi layer spasial yang dapat ditampilkan pada peta.</p>
+<p><img alt="hasil klasifikasi" src="_images/per2.png" /></p>
+</section>
+</section>
+<section id="pembuatan-layer-geojson">
+<h2>6. Pembuatan Layer GeoJSON<a class="headerlink" href="#pembuatan-layer-geojson" title="Link to this heading">#</a></h2>
+<p>Hasil klasifikasi kemudian dikonversi menjadi data spasial dalam format GeoJSON.</p>
+<p>GeoJSON digunakan untuk menyimpan informasi geometri dan atribut dari setiap kelas hasil klasifikasi.</p>
+<p>Atribut utama yang terdapat pada GeoJSON adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Atribut</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>class_id</p></td>
+<td><p>ID kelas</p></td>
+</tr>
+<tr class="row-odd"><td><p>class</p></td>
+<td><p>Nama kelas tutupan lahan</p></td>
+</tr>
+<tr class="row-even"><td><p>geometry</p></td>
+<td><p>Bentuk/geometri objek</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Contoh:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>class_id : 2
+class    : sawah
+geometry : polygon
+</pre></div>
+</div>
+</section>
+<section id="visualisasi-peta">
+<h2>7. Visualisasi Peta<a class="headerlink" href="#visualisasi-peta" title="Link to this heading">#</a></h2>
+<p>Hasil GeoJSON kemudian ditampilkan sebagai layer di atas citra satelit menggunakan Leaflet melalui library Folium. Peta dasar menggunakan citra satelit, sedangkan hasil klasifikasi ditampilkan sebagai overlay.
+Dengan demikian, pengguna dapat membandingkan hasil klasifikasi dengan kondisi permukaan bumi yang terlihat pada citra satelit.</p>
+</section>
+<section id="filter-kelas-tutupan-lahan">
+<h2>8. Filter Kelas Tutupan Lahan<a class="headerlink" href="#filter-kelas-tutupan-lahan" title="Link to this heading">#</a></h2>
+<p>Aplikasi dilengkapi dengan fitur filter untuk memudahkan pengguna dalam melihat kelas tertentu.</p>
+<p>Lima pilihan kelas yang tersedia adalah:</p>
+<ul class="simple">
+<li><p>Bangunan</p></li>
+<li><p>Sawah</p></li>
+<li><p>Perairan</p></li>
+<li><p>Hutan</p></li>
+<li><p>Mangrove</p></li>
+</ul>
+<p>Pengguna dapat mencentang atau menghilangkan centang pada kelas yang ingin ditampilkan.</p>
+<p>Sebagai contoh, ketika pengguna hanya memilih kelas sawah, maka peta hanya menampilkan area yang diklasifikasikan
+sebagai sawah.</p>
+<p><img alt="Sawah" src="_images/per3.png" /></p>
+<p>Fitur filter ini membuat peta menjadi lebih interaktif dan memudahkan pengguna dalam melakukan pengamatan terhadap persebaran kelas tertentu.</p>
+</section>
+<section id="evaluasi-model">
+<h2>9. Evaluasi Model<a class="headerlink" href="#evaluasi-model" title="Link to this heading">#</a></h2>
+<p>Evaluasi dilakukan untuk mengetahui kemampuan model Random Forest dalam melakukan klasifikasi.</p>
+<p>Berdasarkan hasil pengujian model, diperoleh nilai:</p>
+<section id="accuracy-97-72">
+<h3>Accuracy = 97,72%<a class="headerlink" href="#accuracy-97-72" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy:&quot;</span><span class="p">,</span> <span class="n">accuracy</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Accuracy (%):&quot;</span><span class="p">,</span> <span class="n">accuracy</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Hasil output Accuracy:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Accuracy</span><span class="p">:</span> <span class="mf">0.9771524771524771</span>
+<span class="n">Accuracy</span> <span class="p">(</span><span class="o">%</span><span class="p">):</span> <span class="mf">97.71524771524771</span>
+</pre></div>
+</div>
+<p>Nilai accuracy menunjukkan tingkat ketepatan model terhadap data pengujian yang digunakan dalam proses evaluasi.</p>
+<p>Perlu diperhatikan bahwa data training berasal dari hasil digitasi wilayah Pamekasan, sedangkan model diterapkan pada wilayah Jawa Timur.</p>
+<p>Oleh karena itu, nilai accuracy 97,72% merupakan hasil evaluasi terhadap data pengujian model dan tidak secara langsung menunjukkan bahwa seluruh wilayah Jawa Timur memiliki tingkat akurasi sebesar 97,72%.</p>
+<p>Untuk memperoleh evaluasi akurasi khusus wilayah Jawa Timur, diperlukan data referensi atau ground truth yang independen dari wilayah Jawa Timur.</p>
+</section>
+</section>
+<section id="implementasi-aplikasi-streamlit">
+<h2>10. Implementasi Aplikasi Streamlit<a class="headerlink" href="#implementasi-aplikasi-streamlit" title="Link to this heading">#</a></h2>
+<p>Hasil pengolahan kemudian dikembangkan menjadi aplikasi web menggunakan Streamlit.</p>
+<p>Aplikasi digunakan untuk menyajikan hasil klasifikasi dalam bentuk peta interaktif dan informasi yang lebih mudah dipahami oleh pengguna.</p>
+<section id="fitur-aplikasi">
+<h3>Fitur Aplikasi<a class="headerlink" href="#fitur-aplikasi" title="Link to this heading">#</a></h3>
+<p>Aplikasi memiliki beberapa bagian utama:</p>
+<ol class="arabic simple">
+<li><p><strong>Business Understanding :</strong> Menjelaskan latar belakang, tujuan, dan fokus proyek.</p></li>
+<li><p><strong>Filter Kelas Tutupan Lahan :</strong> Pengguna dapat memilih kelas yang ingin ditampilkan.</p></li>
+<li><p><strong>Peta Tutupan Lahan Jawa Timur :</strong> Menampilkan hasil klasifikasi sebagai overlay di atas citra satelit.</p></li>
+<li><p><strong>Informasi Hasil Klasifikasi :</strong>  Menampilkan luas masing-masing kelas.</p></li>
+<li><p><strong>Grafik :</strong> Menampilkan perbandingan luas tutupan lahan.</p></li>
+<li><p><strong>Evaluasi Model :</strong> Menampilkan hasil accuracy model.</p></li>
+<li><p><strong>Informasi Metode :</strong> Menjelaskan data, band, wilayah, algoritma, dan kelas yang digunakan.</p></li>
+</ol>
+</section>
+</section>
+<section id="deployment">
+<h2>12. Deployment<a class="headerlink" href="#deployment" title="Link to this heading">#</a></h2>
+<p>Aplikasi yang telah dibuat kemudian di-deploy menggunakan Streamlit sehingga dapat diakses melalui browser.</p>
+<p>Repository GitHub digunakan sebagai tempat penyimpanan source code dan file pendukung aplikasi.</p>
+<p>Struktur file aplikasi:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>jawatimur/
+│
+├── app.py
+│
+├── klasifikasi_jawa_timur_web_kecil.geojson
+│
+└── luas_klasifikasi_jawa_timur.csv
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>File <a class="reference external" href="http://app.py">app.py</a> merupakan program utama aplikasi.</p></li>
+<li><p>File GeoJSON digunakan sebagai sumber layer hasil klasifikasi.</p></li>
+<li><p>File CSV digunakan untuk menyimpan informasi luas masing-masing kelas tutupan lahan.</p></li>
+<li></li>
+</ul>
+<p>Setelah repository terhubung dengan Streamlit, aplikasi dapat dijalankan dan diakses melalui halaman web.</p>
+<p><strong>Link Aplikasi Streamlit:</strong>
+<a class="reference external" href="https://r7ydpyubahvvqm82wwskzy.streamlit.app/">https://r7ydpyubahvvqm82wwskzy.streamlit.app/</a></p>
+</section>
+<section id="kesimpulan">
+<h2>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Berdasarkan proyek yang telah dilakukan, dapat disimpulkan bahwa citra Sentinel-2 dapat digunakan sebagai sumber data untuk melakukan klasifikasi tutupan lahan dengan algoritma Random Forest.</p>
+<p>Data training diperoleh melalui proses digitasi polygon pada wilayah Kabupaten Pamekasan. Polygon tersebut digunakan untuk membentuk data berlabel yang terdiri dari lima kelas, yaitu bangunan, sawah, perairan, hutan, dan mangrove.</p>
+<p>Data training tersebut kemudian digunakan untuk melatih model Random Forest menggunakan beberapa band Sentinel-2, yaitu B02, B03, B04, B08, B8A, B11, dan B12.</p>
+<p>Model yang telah dilatih kemudian diterapkan pada citra Sentinel-2 wilayah Jawa Timur. Hasil klasifikasi menghasilkan lima kelas tutupan lahan dengan jumlah piksel sebagai berikut:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head text-right"><p>Jumlah Piksel</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Bangunan</p></td>
+<td class="text-right"><p>116.962</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sawah</p></td>
+<td class="text-right"><p>411.688</p></td>
+</tr>
+<tr class="row-even"><td><p>Perairan</p></td>
+<td class="text-right"><p>1.434.527</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hutan</p></td>
+<td class="text-right"><p>386.855</p></td>
+</tr>
+<tr class="row-even"><td><p>Mangrove</p></td>
+<td class="text-right"><p>575.576</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Hasil klasifikasi juga menghasilkan informasi luas:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head text-right"><p>Luas</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Bangunan</p></td>
+<td class="text-right"><p>263.997,94 ha</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sawah</p></td>
+<td class="text-right"><p>929.885,42 ha</p></td>
+</tr>
+<tr class="row-even"><td><p>Perairan</p></td>
+<td class="text-right"><p>3.240.326,33 ha</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hutan</p></td>
+<td class="text-right"><p>873.192,83 ha</p></td>
+</tr>
+<tr class="row-even"><td><p>Mangrove</p></td>
+<td class="text-right"><p>1.299.548,65 ha</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Hasil tersebut kemudian dikonversi menjadi GeoJSON dan ditampilkan sebagai layer di atas citra satelit menggunakan Leaflet/Folium.</p>
+<p>Aplikasi juga dilengkapi dengan fitur filter kelas sehingga pengguna dapat menampilkan kelas tertentu, seperti hanya sawah, hutan, mangrove, bangunan, atau perairan.</p>
+<p>Seluruh hasil kemudian dikembangkan menjadi aplikasi Streamlit dan di-deploy sehingga hasil klasifikasi dapat diakses melalui web.</p>
+<p>Dengan adanya sistem ini, proses penyajian informasi tutupan lahan Jawa Timur menjadi lebih interaktif dan mudah dipahami. Sistem dapat memberikan gambaran awal mengenai persebaran tutupan lahan berdasarkan hasil klasifikasi citra Sentinel-2.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="uts_psd.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">KLASIFIKASI TUTUPAN LAHAN BERBASIS CITRA SATELIT SENTINEL-2 MENGGUNAKAN RANDOM FOREST DI KABUPATEN PAMEKASAN, JAWA TIMUR</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#business-understanding">1. Business Understanding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">1.1 Latar Belakang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">1.2 Tujuan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fokus-proyek">1.3 Fokus Proyek</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembentukan-data-training">2. Pembentukan Data Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#wilayah-training">2.1 Wilayah Training</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kelas-hasil-digitasi">2.2 Kelas Hasil Digitasi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-digitasi">2.3 Hasil Digitasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation">3. Data Preparation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-nilai-piksel">3.1 Ekstraksi Nilai Piksel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-training">3.2 Dataset Training</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">4. Modeling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma-random-forest">4.1 Algoritma Random Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-training">4.2 Proses Training</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-wilayah-jawa-timur">5. Klasifikasi Wilayah Jawa Timur</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penerapan-model">5.1 Penerapan Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-piksel-hasil-klasifikasi">5.2 Jumlah Piksel Hasil Klasifikasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-klasifikasi">5.3 Hasil Klasifikasi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pembuatan-layer-geojson">6. Pembuatan Layer GeoJSON</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-peta">7. Visualisasi Peta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-kelas-tutupan-lahan">8. Filter Kelas Tutupan Lahan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model">9. Evaluasi Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accuracy-97-72">Accuracy = 97,72%</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-aplikasi-streamlit">10. Implementasi Aplikasi Streamlit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-aplikasi">Fitur Aplikasi</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment">12. Deployment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Intan Resti Haslindawati (240411100147)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
